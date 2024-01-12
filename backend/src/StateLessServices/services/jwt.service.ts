@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService as JWTNestService } from '@nestjs/jwt';
-import { ExpiresInE, JWTPayloadI } from './jwt.types';
+import { ExpiresInE, JWTPayloadI } from './types/jwt.types';
 
 @Injectable()
 export class JwtService {

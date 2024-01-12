@@ -1,14 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { JwtModule as JWT } from '@nestjs/jwt';
-import { AuthModule } from './Auth/auth.module';
 
-const JWTModule = JWT.register({
-  secret: process.env.JWT_SECRET,
-});
+import { AuthModule } from './Auth/auth.module';
+import { JWTModule, TypeOrmModule } from './core.modules';
 
 @Module({
-  imports: [JWTModule, AuthModule],
+  imports: [TypeOrmModule, JWTModule, AuthModule],
   controllers: [AppController],
   providers: [],
 })

@@ -6,7 +6,7 @@ export class PasswordService {
   constructor(private readonly passwordService: PasswordService) {}
 
   async hashPassword(password: string): Promise<string> {
-    const saltRounds = 10; // You can adjust the number of salt rounds based on your security requirements
+    const saltRounds = 10;
     return await bcrypt.hash(password, saltRounds);
   }
 

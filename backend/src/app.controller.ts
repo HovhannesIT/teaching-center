@@ -9,7 +9,7 @@ export class AppController {
   info(): infoResponseI {
     return {
       version: 0.1,
-      descriptoion: `'TLCenter.com' project providing posibility connect Teachers and Students each other in World Wide Web`,
+      descriptoion: `'${process.env.PROJECT_NAME}' project providing posibility connect Teachers and Students each other in World Wide Web`,
     };
   }
 }
