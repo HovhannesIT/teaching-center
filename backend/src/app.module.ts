@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 
-import { AuthModule } from './Auth/auth.module';
+import { AuthModule } from './Modules/Auth/auth.module';
 import { JWTModule, TypeOrmModule } from './core.modules';
 
 @Module({
