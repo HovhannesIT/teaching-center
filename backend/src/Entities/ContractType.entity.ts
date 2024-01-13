@@ -18,7 +18,7 @@ export class ContractType {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('string')
+  @Column('varchar')
   name: string;
 
   @Column('date')

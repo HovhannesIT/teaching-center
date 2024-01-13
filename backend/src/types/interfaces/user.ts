@@ -1,8 +1,4 @@
-export enum UserTypeE {
-  TEACHER = 'teacher',
-  STUDENT = 'student',
-  BOTH = 'both',
-}
+import { UserTypesE } from '../enums/UserTypes';
 
 export interface UserInterfaceI {
   firstName: string;
@@ -10,7 +6,7 @@ export interface UserInterfaceI {
   username: string;
   email: string;
   password: string;
-  type: UserTypeE;
+  type: UserTypesE;
   professionId: number;
   phoneNumber: string;
   birthDate: Date;

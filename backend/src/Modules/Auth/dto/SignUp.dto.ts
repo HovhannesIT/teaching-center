@@ -1,12 +1,13 @@
 import {
-  IsDate,
   IsEmail,
   IsNotEmpty,
-  IsPhoneNumber,
   IsString,
   MaxLength,
   MinLength,
+  Validate,
 } from 'class-validator';
+import { IsDateFormat } from '../../../customValidationFormats/date';
+import { Column } from 'typeorm';
 
 export class SignUpDto {
   @IsString()
@@ -38,18 +39,18 @@ export class SignUpDto {
   @IsNotEmpty()
   type: 'teacher' | 'student' | 'both';
 
-  @IsNotEmpty()
+  @Column({ type: 'bigint', unsigned: true, nullable: false })
   professionId: number;
 
-  @IsNotEmpty()
-  @IsPhoneNumber()
+  @Column({ type: 'varchar', length: 255, nullable: false })
   phoneNumber: string;
 
   @IsNotEmpty()
   primaryCommunicationType: 'zoom' | 'skype' | 'google.meet';
 
   @IsNotEmpty()
-  @IsDate()
+  @IsString()
+  @Validate(IsDateFormat)
   birthDate: Date;
 
   avatar?: string;

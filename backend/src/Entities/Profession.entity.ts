@@ -18,7 +18,7 @@ export class Profession {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('string')
+  @Column('varchar')
   name: string;
 
   @CreateDateColumn()

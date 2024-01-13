@@ -29,17 +29,17 @@ export class SeekingLooking {
   @JoinColumn()
   profession: number;
 
-  @Column('string')
+  @Column('varchar')
   name: number;
 
-  @Column('string')
+  @Column('varchar')
   description: number;
 
   @OneToMany(() => User, (user) => user.id)
   @JoinColumn()
   User: User;
 
-  @Column('string')
+  @Column('varchar')
   communicationType: 'zoom' | 'skype' | 'google.meet';
 
   @CreateDateColumn()

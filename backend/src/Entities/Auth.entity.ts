@@ -10,24 +10,15 @@ import {
 
 import { User } from './User.entity';
 
-/*
-Id - [bigUnsignedInteger/ autoIncrement]
-accessToken [string]
-refreshToken [string]
-userId [bigUnsignedInteger]
-updatedAt [Date]
-createdAt [Date]
-*/
-
 @Entity()
 export class Auth {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('string')
+  @Column('varchar')
   accessToken: string;
 
-  @Column('string')
+  @Column('varchar')
   refreshToken: string;
 
   @OneToOne(() => User, (user) => user.id)

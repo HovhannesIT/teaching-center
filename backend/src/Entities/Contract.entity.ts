@@ -10,6 +10,8 @@ import {
 import { User } from './User.entity';
 import { Profession } from './Profession.entity';
 import { ContractType } from './ContractType.entity';
+import { PriceTypesE } from '../types/enums/PriceTypes';
+import { CurrenciesE } from '../types/enums/Currencies';
 
 /*
     Id - [bigUnsignedInteger/ autoIncrement]
@@ -43,17 +45,27 @@ export class Contract {
   @JoinColumn()
   User: User;
 
-  @Column('string')
+  @Column('varchar')
   language: string;
 
-  @Column('string')
+  @Column('varchar')
   description: string;
 
-  @Column('enum')
-  priceType: 'one.time.fixed' | 'each.lesson';
+  @Column({
+    type: 'enum',
+    enum: PriceTypesE,
+    default: PriceTypesE.ONE_TIME_FIXED,
+    nullable: false,
+  })
+  priceType: PriceTypesE;
 
-  @Column('enum')
-  currency: '$' | '€' | '֏';
+  @Column({
+    type: 'enum',
+    enum: CurrenciesE,
+    default: CurrenciesE.DOLLAR,
+    nullable: false,
+  })
+  currency: CurrenciesE;
 
   @Column('bigint')
   price: number;

@@ -2,12 +2,12 @@ import { Module, ValidationPipe } from '@nestjs/common';
 import { AppController } from './app.controller';
 
 import { AuthModule } from './Modules/Auth/auth.module';
-import { JWTModule, TypeOrmModule } from './core.modules';
-
+import { JWTModule } from './Modules/core/jwt.module';
 import { APP_PIPE } from '@nestjs/core';
+import { DatabaseModule } from './Modules/core/database.module';
 
 @Module({
-  imports: [TypeOrmModule, JWTModule, AuthModule],
+  imports: [DatabaseModule, JWTModule, AuthModule],
   controllers: [AppController],
   providers: [
     {

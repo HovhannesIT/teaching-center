@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { CommuncationTypesE, UserTypesE } from '../types';
 
 /*
 Id - [bigUnsignedInteger/ autoIncrement]
@@ -27,34 +28,54 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('string')
+  @Column('varchar')
   firstName: string;
 
-  @Column('string')
+  @Column('varchar')
   lastName?: string;
 
-  @Column('string', { unique: true })
+  @Column('varchar', { unique: true })
   username: string;
 
-  @Column('string', { unique: true })
+  @Column('varchar', { unique: true })
   email: string;
 
-  @Column('enum')
-  type: 'teacher' | 'student' | 'both';
+  @Column({
+    type: 'enum',
+    enum: UserTypesE,
+    default: UserTypesE.BOTH,
+    nullable: false,
+  })
+  type: UserTypesE;
 
-  @Column('unsigned big int')
+  @Column({
+    name: 'professionId',
+    type: 'bigint',
+    unsigned: true,
+    nullable: false,
+  })
   professionId: number;
 
-  @Column('string')
+  @Column({
+    name: 'phoneNumber',
+    type: 'varchar',
+    length: 255,
+    nullable: false,
+  })
   phoneNumber: string;
 
-  @Column('string')
-  primaryCommunicationType: 'zoom' | 'skype' | 'google.meet';
+  @Column({
+    type: 'enum',
+    enum: CommuncationTypesE,
+    default: CommuncationTypesE.SKYPE,
+    nullable: false,
+  })
+  primaryCommunicationType: CommuncationTypesE;
 
   @Column('date')
   birthDate: Date;
 
-  @Column('string')
+  @Column('varchar')
   avatar: string;
 
   @CreateDateColumn()
