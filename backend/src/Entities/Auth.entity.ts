@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
 } from 'typeorm';
+
+import { User } from './User.entity';
 
 /*
 Id - [bigUnsignedInteger/ autoIncrement]
@@ -26,8 +29,8 @@ export class Auth {
   @Column('string')
   refreshToken: string;
 
-  @Column('unsigned big int', { unique: true })
-  userId: number;
+  @OneToOne(() => User, (user) => user.id)
+  User: User;
 
   @CreateDateColumn()
   created_at: Date;

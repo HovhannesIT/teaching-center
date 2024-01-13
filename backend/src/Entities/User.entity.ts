@@ -23,7 +23,7 @@ createdAt - [Date]
 */
 
 @Entity()
-export class Auth {
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -31,7 +31,7 @@ export class Auth {
   firstName: string;
 
   @Column('string')
-  lastName: string;
+  lastName?: string;
 
   @Column('string', { unique: true })
   username: string;
@@ -47,6 +47,9 @@ export class Auth {
 
   @Column('string')
   phoneNumber: string;
+
+  @Column('string')
+  primaryCommunicationType: 'zoom' | 'skype' | 'google.meet';
 
   @Column('date')
   birthDate: Date;
