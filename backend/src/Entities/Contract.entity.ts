@@ -5,10 +5,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 import { User } from './User.entity';
 import { Profession } from './Profession.entity';
 import { ContractType } from './ContractType.entity';
+
 /*
     Id - [bigUnsignedInteger/ autoIncrement]
     title - [string]
@@ -30,12 +32,15 @@ export class Contract {
   id: number;
 
   @OneToMany(() => Profession, (profession) => profession.id)
+  @JoinColumn()
   profession: Profession;
 
   @OneToMany(() => User, (user) => user.id)
+  @JoinColumn()
   teacher: User;
 
   @OneToMany(() => User, (user) => user.id)
+  @JoinColumn()
   User: User;
 
   @Column('string')
@@ -54,6 +59,7 @@ export class Contract {
   price: number;
 
   @OneToMany(() => ContractType, (contractType) => contractType.id)
+  @JoinColumn()
   contractType: ContractType;
 
   @CreateDateColumn()

@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 import { User } from './User.entity';
 import { Profession } from './Profession.entity';
@@ -25,6 +26,7 @@ export class SeekingLooking {
   id: number;
 
   @OneToMany(() => Profession, (profession) => profession.id)
+  @JoinColumn()
   profession: number;
 
   @Column('string')
@@ -34,6 +36,7 @@ export class SeekingLooking {
   description: number;
 
   @OneToMany(() => User, (user) => user.id)
+  @JoinColumn()
   User: User;
 
   @Column('string')

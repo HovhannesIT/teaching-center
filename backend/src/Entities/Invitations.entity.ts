@@ -4,6 +4,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 import { User } from './User.entity';
 import { Contract } from './Contract.entity';
@@ -23,12 +24,15 @@ export class Invitations {
   id: number;
 
   @OneToMany(() => Contract, (contract) => contract.id)
+  @JoinColumn()
   contract: Contract;
 
   @OneToMany(() => User, (user) => user.id)
+  @JoinColumn()
   applyer: User;
 
   @OneToMany(() => User, (user) => user.id)
+  @JoinColumn()
   subscriber: User;
 
   @CreateDateColumn()

@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToOne,
+  JoinColumn,
 } from 'typeorm';
 
 import { User } from './User.entity';
@@ -30,7 +31,8 @@ export class Auth {
   refreshToken: string;
 
   @OneToOne(() => User, (user) => user.id)
-  User: User;
+  @JoinColumn()
+  user: User;
 
   @CreateDateColumn()
   created_at: Date;
