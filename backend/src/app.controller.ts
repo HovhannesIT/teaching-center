@@ -1,11 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
 import { infoResponseI } from './app.types';
 
-@Controller('App')
+@Controller()
 export class AppController {
   constructor() {}
 
-  @Get('info')
+  @Get('/')
   info(): infoResponseI {
     return {
       version: 0.1,
