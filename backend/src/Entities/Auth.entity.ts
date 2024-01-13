@@ -15,10 +15,10 @@ export class Auth {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   accessToken: string;
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true })
   refreshToken: string;
 
   @OneToOne(() => User, (user) => user.id)

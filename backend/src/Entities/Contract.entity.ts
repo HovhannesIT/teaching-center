@@ -13,21 +13,6 @@ import { ContractType } from './ContractType.entity';
 import { PriceTypesE } from '../types/enums/PriceTypes';
 import { CurrenciesE } from '../types/enums/Currencies';
 
-/*
-    Id - [bigUnsignedInteger/ autoIncrement]
-    title - [string]
-    professionId - [bigUnsignedInteger]	
-    teacherId - [bigUnsignedInteger]
-    studentId - [bigUnsignedInteger]
-    language - [string]
-    description - [string]
-    priceType - enum[one.time.fixed/each.lesson]
-    price - [bigInteger]
-    currency - enum[$/€/֏]
-    updatedAt - [Date]
-    createdAt - [Date]
-*/
-
 @Entity()
 export class Contract {
   @PrimaryGeneratedColumn()

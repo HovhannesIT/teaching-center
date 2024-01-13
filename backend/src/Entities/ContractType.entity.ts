@@ -6,13 +6,6 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-/*
-    Id - [bigUnsignedInteger/ autoIncrement]
-    name - [string]
-    updatedAt - [Date]
-    createdAt - [Date]
-*/
-
 @Entity()
 export class ContractType {
   @PrimaryGeneratedColumn()

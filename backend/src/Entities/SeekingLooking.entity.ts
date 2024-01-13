@@ -9,16 +9,6 @@ import {
 } from 'typeorm';
 import { User } from './User.entity';
 import { Profession } from './Profession.entity';
-/*
-Id - [bigUnsignedInteger/ autoIncrement]
-professionId - [bigUnsignedInteger]
-name - [string]
-description - [string] 
-userId - [bigUnsignedInteger]
-communicationType - enum [zoom/skype/google.meet]
-updatedAt - [Date]
-createdAt - [Date]
-*/
 
 @Entity()
 export class SeekingLooking {

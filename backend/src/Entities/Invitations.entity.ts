@@ -9,15 +9,6 @@ import {
 import { User } from './User.entity';
 import { Contract } from './Contract.entity';
 
-/*
-    Id - [bigUnsignedInteger/ autoIncrement]
-    contractId - [bigUnsignedInteger]
-    applyerId - [bigUnsignedInteger]
-    subscriberId [bigUnsignedInteger]
-    updatedAt - [Date]
-    createdAt - [Date]
-  */
-
 @Entity()
 export class Invitations {
   @PrimaryGeneratedColumn()

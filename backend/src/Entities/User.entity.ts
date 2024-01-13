@@ -7,22 +7,6 @@ import {
 } from 'typeorm';
 import { CommuncationTypesE, UserTypesE } from '../types';
 
-/*
-Id - [bigUnsignedInteger/ autoIncrement]
-firstName - [string]
-lastName - [string]!
-username - [string]
-email - [string]
-password - [string] 
-type - enum[teacher/student/both]
-professionId - [bigUnsignedInteger]
-phoneNumber - [string]
-birthDate - [date]
-avatar - [string]!
-updatedAt - [Date]
-createdAt - [Date]
-*/
-
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
