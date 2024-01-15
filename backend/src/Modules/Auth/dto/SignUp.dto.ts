@@ -14,7 +14,7 @@ export class SignUpDto {
   @IsNotEmpty()
   @MinLength(3)
   @MaxLength(24)
-  firsName: string;
+  firstName: string;
 
   @IsString()
   @IsNotEmpty()
@@ -53,5 +53,5 @@ export class SignUpDto {
   @Validate(IsDateFormat)
   birthDate: Date;
 
-  avatar?: string;
+  avatar?: string | null;
 }

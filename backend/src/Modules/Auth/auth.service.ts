@@ -12,12 +12,13 @@ export class AuthService {
     private authRepository: Repository<Auth>,
   ) {}
 
-  async createNewUser(user) {
-    const newAuthInfo = this.authRepository.create({ user });
-    const newUsernfo = this.userRepository.create(user);
+  async createNewUser(user: User) {
+    const newUserInfo = this.userRepository.create(user);
     try {
+      const user = await this.userRepository.save(newUserInfo);
+
+      const newAuthInfo = this.authRepository.create(user);
       await this.authRepository.save(newAuthInfo);
-      await this.userRepository.save(newUsernfo);
 
       return true;
     } catch (err) {

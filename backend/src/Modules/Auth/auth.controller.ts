@@ -1,7 +1,17 @@
-import { Controller, Post, Delete, Put, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Delete,
+  Put,
+  Body,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { SignUpDto } from './dto/SignUp.dto';
 // import { SignInDto } from './dto/SignIn.dto';
 import { AuthService } from './auth.service';
+import { User } from '../../entities';
+import { plainToInstance } from 'class-transformer';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -12,12 +22,17 @@ export class AuthController {
   @Post('sign-up')
   async signUp(@Body() signUpBody: SignUpDto) {
     try {
-      await this.authService.createNewUser(signUpBody);
+      const sqlRes = await this.authService.createNewUser(
+        plainToInstance(User, signUpBody),
+      );
 
-      return true;
+      if (!sqlRes) {
+        throw new HttpException('User allready exists', HttpStatus.BAD_REQUEST);
+      }
+
+      return sqlRes;
     } catch (err) {
-      console.log(err);
-      return false;
+      throw new HttpException(err, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 

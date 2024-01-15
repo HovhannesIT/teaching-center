@@ -59,8 +59,8 @@ export class User {
   @Column('date')
   birthDate: Date;
 
-  @Column('varchar')
-  avatar: string;
+  @Column('varchar', { nullable: true })
+  avatar: string | null;
 
   @CreateDateColumn()
   created_at: Date;
