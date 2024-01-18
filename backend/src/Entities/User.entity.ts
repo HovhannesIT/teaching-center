@@ -4,8 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 import { CommuncationTypesE, UserTypesE } from '../types';
+import { Auth } from './Auth.entity';
 
 @Entity()
 export class User {
@@ -23,6 +26,13 @@ export class User {
 
   @Column('varchar', { unique: true })
   email: string;
+
+  @Column('varchar')
+  password: string;
+
+  @OneToOne(() => Auth, (auth) => auth.id)
+  @JoinColumn()
+  auth: Auth;
 
   @Column({
     type: 'enum',

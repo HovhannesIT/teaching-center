@@ -6,16 +6,13 @@ import { ExpiresInE, JWTPayloadI } from './types/jwt.types';
 export class JwtService {
   constructor(private readonly jwtService: JWTNestService) {}
 
-  async generateToken(
-    payload: JWTPayloadI,
-    expiresIn: ExpiresInE,
-  ): Promise<string> {
-    return await this.jwtService.sign(payload, {
+  generateToken(payload: JWTPayloadI, expiresIn: ExpiresInE) {
+    return this.jwtService.sign(payload, {
       expiresIn: expiresIn,
     });
   }
 
-  async verifyToken(token: string): Promise<JWTPayloadI> {
+  verifyToken(token: string) {
     try {
       return this.jwtService.verify(token);
     } catch (error) {

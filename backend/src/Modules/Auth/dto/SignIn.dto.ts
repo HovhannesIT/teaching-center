@@ -1,6 +1,7 @@
 import {
   IsEmail,
   IsNotEmpty,
+  IsOptional,
   IsString,
   MaxLength,
   MinLength,
@@ -8,8 +9,8 @@ import {
 
 export class SignInDto {
   @MinLength(6)
-  @IsNotEmpty()
   @IsString()
+  @IsOptional()
   username?: string;
 
   @IsEmail()

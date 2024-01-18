@@ -3,8 +3,6 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class PasswordService {
-  constructor(private readonly passwordService: PasswordService) {}
-
   async hashPassword(password: string): Promise<string> {
     const saltRounds = 10;
     return await bcrypt.hash(password, saltRounds);

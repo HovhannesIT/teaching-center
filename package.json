@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@types/bcrypt": "^5.0.2",
     "crypto": "^1.0.1",
     "util": "^0.12.5"
   }

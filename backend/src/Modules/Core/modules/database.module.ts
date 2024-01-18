@@ -8,7 +8,7 @@ import {
   Profession,
   SeekingLooking,
   User,
-} from '../../entities';
+} from '../../../entities';
 
 import * as dotenv from 'dotenv';
 

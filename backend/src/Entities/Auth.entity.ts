@@ -4,11 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
-  JoinColumn,
 } from 'typeorm';
-
-import { User } from './User.entity';
 
 @Entity()
 export class Auth {
@@ -20,10 +16,6 @@ export class Auth {
 
   @Column('varchar', { nullable: true })
   refreshToken: string;
-
-  @OneToOne(() => User, (user) => user.id)
-  @JoinColumn()
-  user: User;
 
   @CreateDateColumn()
   created_at: Date;
