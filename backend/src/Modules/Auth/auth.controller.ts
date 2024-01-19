@@ -15,7 +15,8 @@ import { User } from '../../entities';
 import { plainToInstance } from 'class-transformer';
 import { SignInDto } from './dto/SignIn.dto';
 import { hash } from 'bcrypt';
-import { AuthGuard, RefreshGuard } from '../../guards/auth.guard';
+import { AccessGuard } from '../../guards/access.guard';
+import { RefreshGuard } from '../../guards/refresh.guard';
 import { RequestGuardI } from '../../types/interfaces/request.guard';
 
 @Controller('auth')
@@ -65,7 +66,7 @@ export class AuthController {
   }
 
   @Put('refresh-tokens')
-  @UseGuards(AuthGuard)
+  @UseGuards(AccessGuard)
   refreshTokens() {
     return 'test';
   }

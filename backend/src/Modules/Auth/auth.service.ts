@@ -65,6 +65,9 @@ export class AuthService {
         refreshToken,
       });
 
+      userData.auth.accessToken = accessToken;
+      userData.auth.refreshToken = refreshToken;
+
       return userData;
     } else {
       return false;
