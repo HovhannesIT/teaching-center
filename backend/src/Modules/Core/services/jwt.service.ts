@@ -12,6 +12,10 @@ export class JwtService {
     });
   }
 
+  readPayload(token: string) {
+    return JSON.parse(atob(token.split('.')[1].split('.')[0]));
+  }
+
   verifyToken(token: string) {
     try {
       return this.jwtService.verify(token);

@@ -7,6 +7,7 @@ export enum ExpiresInE {
 
 export interface JWTPayloadI {
   id?: number;
+  authId?: number;
   type?: UserTypesE;
   professionId?: number;
 }

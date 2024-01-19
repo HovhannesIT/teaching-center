@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { SignInDto } from './dto/SignIn.dto';
 import { JwtService } from '../Core/services/jwt.service';
-import { ExpiresInE } from '../Core/services/types/jwt.types';
+import { ExpiresInE, JWTPayloadI } from '../Core/services/types/jwt.types';
 
 @Injectable()
 export class AuthService {
@@ -46,12 +46,16 @@ export class AuthService {
           id: userData.id,
           type: userData.type,
           professionId: userData.professionId,
+          authId: userData.auth.id,
         },
         ExpiresInE.ACCESS_TOKEN,
       );
       const refreshToken = this.jwtService.generateToken(
         {
           id: userData.id,
+          type: userData.type,
+          professionId: userData.professionId,
+          authId: userData.auth.id,
         },
         ExpiresInE.REFRESH_TOKEN,
       );
@@ -66,6 +70,24 @@ export class AuthService {
       return false;
     }
   }
-  // findUserTokens(email: string, password: string) {}
-  // deleteActualTokens(email: string) {}
+
+  checkTokenValidity(token: string) {
+    try {
+      this.jwtService.verifyToken(token);
+      return this.jwtService.readPayload(token);
+    } catch (err) {
+      return false;
+    }
+  }
+
+  async removeTokens(user: JWTPayloadI) {
+    const uAuth = await this.authRepository.findOne({
+      where: [{ id: user.authId }],
+    });
+
+    uAuth.accessToken = null;
+    uAuth.refreshToken = null;
+
+    this.authRepository.save(uAuth);
+  }
 }

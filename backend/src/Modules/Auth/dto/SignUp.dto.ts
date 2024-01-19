@@ -6,7 +6,7 @@ import {
   MinLength,
   Validate,
 } from 'class-validator';
-import { IsDateFormat } from '../../../customValidationFormats/date';
+import { IsDateFormat } from '../../../dto-validation-formats/date';
 import { Column } from 'typeorm';
 
 export class SignUpDto {

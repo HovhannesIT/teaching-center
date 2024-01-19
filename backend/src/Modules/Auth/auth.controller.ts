@@ -6,14 +6,18 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { SignUpDto } from './dto/SignUp.dto';
-// import { SignInDto } from './dto/SignIn.dto';
 import { AuthService } from './auth.service';
 import { User } from '../../entities';
 import { plainToInstance } from 'class-transformer';
 import { SignInDto } from './dto/SignIn.dto';
 import { hash } from 'bcrypt';
+import { AuthGuard, RefreshGuard } from '../../guards/auth.guard';
+import { RequestGuardI } from '../../types/interfaces/request.guard';
+
 @Controller('auth')
 export class AuthController {
   private bcryptSalt = 10;
@@ -53,9 +57,15 @@ export class AuthController {
   }
 
   @Delete('sign-out')
-  signOut() {}
+  @UseGuards(RefreshGuard)
+  async signOut(@Req() req: RequestGuardI) {
+    await this.authService.removeTokens(req.user);
+
+    return true;
+  }
 
   @Put('refresh-tokens')
+  @UseGuards(AuthGuard)
   refreshTokens() {
     return 'test';
   }

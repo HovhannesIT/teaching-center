@@ -2,8 +2,9 @@ import { Module, ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { AppController } from './app.controller';
 
-import { AuthModule } from './Modules/Auth/auth.module';
-import { CoreModule } from './Modules/Core/core.module';
+import { CoreModule } from './modules/Core/core.module';
+import { AuthModule } from './modules/Auth/auth.module';
+
 @Module({
   imports: [CoreModule, AuthModule],
   controllers: [AppController],
