@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   Controller,
   Get,
   Post,
@@ -8,10 +7,8 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express/multer';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
 import { AccessGuard } from '../../guards/access.guard';
+import { AvatarInterceptor } from './avatar.interceptor';
 
 @Controller('user')
 @UseGuards(AccessGuard)
@@ -24,29 +21,9 @@ export class UserController {
   async updateUserInfo() {}
 
   @Put('set-avatar')
-  @UseInterceptors(
-    FileInterceptor('file', {
-      storage: diskStorage({
-        filename: (req, file, callback) => {
-          const allowedExtensions = ['.jpg', '.jpeg', '.png'];
-
-          const extension = extname(file.originalname);
-          if (allowedExtensions.includes(extension)) {
-            callback(null, `${req.user.id}${extension}`);
-          } else {
-            callback(new BadRequestException('Invalid file extension'), false);
-          }
-        },
-      }),
-    }),
-  )
+  @UseInterceptors(AvatarInterceptor())
   async setAvatar(@UploadedFile() file) {
-    return {
-      originalname: file.originalname,
-      filename: file.filename,
-      size: file.size,
-      mimetype: file.mimetype,
-    };
+    return file;
   }
 
   @Get('avatar')
