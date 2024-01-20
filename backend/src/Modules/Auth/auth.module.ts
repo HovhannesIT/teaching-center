@@ -7,5 +7,6 @@ import { CoreModule } from '../Core/core.module';
   imports: [CoreModule],
   providers: [AuthService],
   controllers: [AuthController],
+  exports: [AuthService],
 })
 export class AuthModule {}
