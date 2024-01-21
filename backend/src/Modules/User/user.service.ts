@@ -12,7 +12,11 @@ export class UserService {
   ) {}
 
   async getInfo(userId: number) {
-    return await this.userRepository.findOne({ where: [{ id: userId }] });
+    const user = await this.userRepository.findOne({ where: [{ id: userId }] });
+
+    delete user.password;
+
+    return user;
   }
 
   async updateInfo(userId: number, userInfo: UpdateUserInfoDTO) {
@@ -21,6 +25,8 @@ export class UserService {
     Object.assign(user, userInfo);
 
     await this.userRepository.save(user);
+
+    delete user.password;
 
     return user;
   }

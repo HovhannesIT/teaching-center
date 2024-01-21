@@ -37,6 +37,4 @@ export class UpdateUserInfoDTO {
   @IsString()
   @Validate(IsDateFormat)
   birthDate: Date;
-
-  avatar?: string | null;
 }

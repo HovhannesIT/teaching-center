@@ -20,17 +20,17 @@ import { UpdateUserInfoDTO } from './dto/UpdateUserInfo.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Put()
-  @Get('user-info')
+  @Get('info')
   async userInfo(@Req() req: RequestGuardI) {
     return await this.userService.getInfo(req.user.id);
   }
 
-  @Post('update-user-info')
+  @Post('update-info')
   async updateUserInfo(
     @Body() info: UpdateUserInfoDTO,
     @Req() req: RequestGuardI,
   ) {
+    console.log(1234);
     return await this.userService.updateInfo(req.user.id, info);
   }
 

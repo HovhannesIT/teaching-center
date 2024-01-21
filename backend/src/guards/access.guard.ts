@@ -8,6 +8,7 @@ export class AccessGuard implements CanActivate {
   canActivate(context: ExecutionContext) {
     const request = context.switchToHttp().getRequest();
     const headers = request.headers;
+
     const valid = this.authService.checkTokenValidity(headers.auth);
 
     if (headers.auth && valid) {
