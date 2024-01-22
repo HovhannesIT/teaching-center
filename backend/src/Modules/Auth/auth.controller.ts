@@ -17,7 +17,7 @@ import { SignInDto } from './dto/SignIn.dto';
 import { hash } from 'bcrypt';
 import { AccessGuard } from '../../guards/access.guard';
 import { RefreshGuard } from '../../guards/refresh.guard';
-import { RequestGuardI } from '../../types/interfaces/request.guard';
+import { RequestGuardedI } from '../../types/interfaces/request.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -59,7 +59,7 @@ export class AuthController {
 
   @Delete('sign-out')
   @UseGuards(RefreshGuard)
-  async signOut(@Req() req: RequestGuardI) {
+  async signOut(@Req() req: RequestGuardedI) {
     await this.authService.removeTokens(req.user);
 
     return true;

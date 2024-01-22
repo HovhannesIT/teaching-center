@@ -4,36 +4,33 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
 import { User } from './User.entity';
 import { Profession } from './Profession.entity';
-import { ContractType } from './ContractType.entity';
 import { PriceTypesE } from '../types/enums/PriceTypes';
 import { CurrenciesE } from '../types/enums/Currencies';
+import { ContractTypeE } from '../types/enums/ContractType';
 
 @Entity()
 export class Contract {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToMany(() => Profession, (profession) => profession.id)
+  @OneToOne(() => Profession, (profession) => profession.id)
   @JoinColumn()
   profession: Profession;
 
-  @OneToMany(() => User, (user) => user.id)
+  @OneToOne(() => User, (user) => user.id)
   @JoinColumn()
   teacher: User;
 
-  @OneToMany(() => User, (user) => user.id)
+  @OneToOne(() => User, (user) => user.id)
   @JoinColumn()
-  User: User;
+  student: User;
 
-  @Column('varchar')
-  language: string;
-
-  @Column('varchar')
+  @Column('text')
   description: string;
 
   @Column({
@@ -46,6 +43,14 @@ export class Contract {
 
   @Column({
     type: 'enum',
+    enum: ContractTypeE,
+    default: ContractTypeE.ONE_TIME,
+    nullable: false,
+  })
+  contractType: ContractTypeE;
+
+  @Column({
+    type: 'enum',
     enum: CurrenciesE,
     default: CurrenciesE.DOLLAR,
     nullable: false,
@@ -54,10 +59,6 @@ export class Contract {
 
   @Column('bigint')
   price: number;
-
-  @OneToMany(() => ContractType, (contractType) => contractType.id)
-  @JoinColumn()
-  contractType: ContractType;
 
   @CreateDateColumn()
   created_at: Date;

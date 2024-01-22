@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { AccessGuard } from '../../guards/access.guard';
 import { AvatarInterceptor } from './avatar.interceptor';
-import { RequestGuardI } from '../../types/interfaces/request.guard';
+import { RequestGuardedI } from '../../types/interfaces/request.guard';
 import { UserService } from './user.service';
 import { UpdateUserInfoDTO } from './dto/UpdateUserInfo.dto';
 
@@ -21,14 +21,14 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('info')
-  async userInfo(@Req() req: RequestGuardI) {
+  async userInfo(@Req() req: RequestGuardedI) {
     return await this.userService.getInfo(req.user.id);
   }
 
   @Post('update-info')
   async updateUserInfo(
     @Body() info: UpdateUserInfoDTO,
-    @Req() req: RequestGuardI,
+    @Req() req: RequestGuardedI,
   ) {
     return await this.userService.updateInfo(req.user.id, info);
   }

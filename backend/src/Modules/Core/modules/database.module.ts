@@ -3,7 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import {
   Auth,
   Contract,
-  ContractType,
   Invitations,
   Profession,
   SeekingLooking,
@@ -18,7 +17,6 @@ const entities = [
   Auth,
   User,
   Contract,
-  ContractType,
   Invitations,
   Profession,
   SeekingLooking,

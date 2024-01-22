@@ -1,16 +1,24 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ApplyInvitationDTO } from './dto/applyInvitation.dto';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { ContractService } from './contract.service';
+import { ApplyDTO } from './dto/apply.dto';
+import { AccessGuard } from '../../guards/access.guard';
+import { RequestGuardedI } from '../../types/interfaces/request.guard';
 
 @Controller('contract')
-export class Contract {
-  @Get('list')
-  list() {}
+@UseGuards(AccessGuard)
+export class ContractController {
+  constructor(private readonly contractService: ContractService) {}
 
-  @Get('invitations-list')
-  invitationsList() {}
+  @Get('list')
+  async list(@Req() request: RequestGuardedI) {
+    return await this.contractService.list(request.user.id);
+  }
 
   @Post('apply')
-  applyInvitation(@Body() applyInvitation: ApplyInvitationDTO) {
-    return applyInvitation;
+  async applyInvitation(
+    @Body() data: ApplyDTO,
+    @Req() request: RequestGuardedI,
+  ) {
+    return await this.contractService.applyInvitation(request.user.id, data);
   }
 }

@@ -5,10 +5,12 @@ import {
   UpdateDateColumn,
   JoinColumn,
   OneToOne,
+  Column,
 } from 'typeorm';
 import { User } from './User.entity';
 import { Contract } from './Contract.entity';
 import { SeekingLooking } from './SeekingLooking.entity';
+import { IsBoolean } from 'class-validator';
 
 @Entity()
 export class Invitations {
@@ -30,6 +32,12 @@ export class Invitations {
   @OneToOne(() => User, (user) => user.id)
   @JoinColumn()
   applyer: User;
+
+  @Column('varchar')
+  language: string;
+
+  @IsBoolean()
+  applyed: boolean;
 
   @CreateDateColumn()
   created_at: Date;

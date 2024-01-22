@@ -15,6 +15,10 @@ export class OpenDTO {
   @MinLength(200)
   description: string;
 
+  @IsString()
+  @IsNotEmpty()
+  language: string;
+
   @IsNotEmpty()
   communicationType: 'zoom' | 'skype' | 'google.meet';
 }

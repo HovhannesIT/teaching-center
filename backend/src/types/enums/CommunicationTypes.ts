@@ -1,5 +1,5 @@
 export enum CommuncationTypesE {
-  ZOOM = 'zoom',
-  SKYPE = 'skype',
-  GOOGLE_MEET = 'google.meet',
+  ZOOM = 'Zoom',
+  SKYPE = 'Skype',
+  GOOGLE_MEET = 'Google.meet',
 }

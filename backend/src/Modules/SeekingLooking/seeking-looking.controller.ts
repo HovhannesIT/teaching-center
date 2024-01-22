@@ -11,7 +11,7 @@ import {
 import { AccessGuard } from '../../guards/access.guard';
 import { SeekingLookingService } from './seeking-looking.service';
 import { OpenDTO } from './dto/apply.dto';
-import { RequestGuardI } from '../../types/interfaces/request.guard';
+import { RequestGuardedI } from '../../types/interfaces/request.guard';
 
 @Controller('seeking-looking')
 export class SeekingLookingController {
@@ -19,13 +19,13 @@ export class SeekingLookingController {
 
   @Put('open')
   @UseGuards(AccessGuard)
-  async open(@Req() req: RequestGuardI, @Body() open: OpenDTO) {
+  async open(@Req() req: RequestGuardedI, @Body() open: OpenDTO) {
     return await this.seekingLookingService.create(req.user.id, open);
   }
 
   @Post('apply/:id')
   @UseGuards(AccessGuard)
-  async apply(@Param('id') id: string, @Req() req: RequestGuardI) {
+  async apply(@Param('id') id: string, @Req() req: RequestGuardedI) {
     return await this.seekingLookingService.apply(Number(id), req.user.id);
   }
 
@@ -36,7 +36,7 @@ export class SeekingLookingController {
 
   @Get('list/current')
   @UseGuards(AccessGuard)
-  async currentList(@Req() req: RequestGuardI) {
+  async currentList(@Req() req: RequestGuardedI) {
     return await this.seekingLookingService.list(req.user.id);
   }
 }
