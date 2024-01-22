@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+
+  .lending {
+    padding: 0 24px;
+    p.title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #2780d7;
+      border-radius: 10px;
+      font-size: 2rem;
+      height: 80px;
+      box-shadow: 0px 0px 15px 4px #b4b4b4;
+      color: #ffffff;
+
+      @media only screen and (max-width: 1200px){
+        font-size: 1rem;
+        height: 60px;
+      }
+
+      @media only screen and (max-width: 530px){
+        font-size: 0.6rem;
+        height: 50px;
+      }
+    }
+  }
+
+  .professions,.couches {
+  }
+
+  
+}
+
