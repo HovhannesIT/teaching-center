@@ -5,9 +5,10 @@ import { AppController } from './app.controller';
 import { CoreModule } from './modules/Core/core.module';
 import { AuthModule } from './modules/Auth/auth.module';
 import { UserModule } from './modules/User/user.module';
+import { SeekingLookingModule } from './modules/SeekingLooking/seeking-looking.module';
 
 @Module({
-  imports: [CoreModule, AuthModule, UserModule],
+  imports: [CoreModule, AuthModule, UserModule, SeekingLookingModule],
   controllers: [AppController],
   providers: [
     {

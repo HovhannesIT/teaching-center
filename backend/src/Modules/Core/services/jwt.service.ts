@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService as JWTNestService } from '@nestjs/jwt';
-import { ExpiresInE, JWTPayloadI } from './types/jwt.types';
+import { JWTPayloadI } from './types/jwt.types';
 
 @Injectable()
 export class JwtService {
   constructor(private readonly jwtService: JWTNestService) {}
 
-  generateToken(payload: JWTPayloadI, expiresIn: ExpiresInE) {
+  generateToken(payload: JWTPayloadI, expiresIn) {
     return this.jwtService.sign(payload, {
       expiresIn: expiresIn,
     });

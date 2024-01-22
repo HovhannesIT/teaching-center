@@ -30,7 +30,6 @@ export class UserController {
     @Body() info: UpdateUserInfoDTO,
     @Req() req: RequestGuardI,
   ) {
-    console.log(1234);
     return await this.userService.updateInfo(req.user.id, info);
   }
 

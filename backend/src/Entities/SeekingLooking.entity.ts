@@ -4,8 +4,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
   JoinColumn,
+  ManyToOne,
+  OneToOne,
 } from 'typeorm';
 import { User } from './User.entity';
 import { Profession } from './Profession.entity';
@@ -15,19 +16,19 @@ export class SeekingLooking {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToMany(() => Profession, (profession) => profession.id)
+  @OneToOne(() => Profession, (profession) => profession.id)
   @JoinColumn()
   profession: number;
 
   @Column('varchar')
   name: number;
 
-  @Column('varchar')
-  description: number;
+  @Column('text')
+  description: string;
 
-  @OneToMany(() => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.id)
   @JoinColumn()
-  User: User;
+  owner: User;
 
   @Column('varchar')
   communicationType: 'zoom' | 'skype' | 'google.meet';

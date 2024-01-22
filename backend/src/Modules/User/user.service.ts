@@ -14,8 +14,6 @@ export class UserService {
   async getInfo(userId: number) {
     const user = await this.userRepository.findOne({ where: [{ id: userId }] });
 
-    delete user.password;
-
     return user;
   }
 
@@ -25,8 +23,6 @@ export class UserService {
     Object.assign(user, userInfo);
 
     await this.userRepository.save(user);
-
-    delete user.password;
 
     return user;
   }

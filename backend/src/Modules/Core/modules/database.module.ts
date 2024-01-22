@@ -14,27 +14,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-export const ForRootModule = TypeOrmModule.forRoot({
-  type: 'mysql',
-  host: process.env.DATABASE_HOST,
-  port: Number(process.env.DATABASE_PORT),
-  username: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME,
-  entities: [
-    Auth,
-    User,
-    Contract,
-    ContractType,
-    Invitations,
-    Profession,
-    SeekingLooking,
-  ],
-  logging: true,
-  synchronize: true,
-});
-
-const ForFeatureModuel = TypeOrmModule.forFeature([
+const entities = [
   Auth,
   User,
   Contract,
@@ -42,7 +22,21 @@ const ForFeatureModuel = TypeOrmModule.forFeature([
   Invitations,
   Profession,
   SeekingLooking,
-]);
+];
+
+export const ForRootModule = TypeOrmModule.forRoot({
+  type: 'mysql',
+  host: process.env.DATABASE_HOST,
+  port: Number(process.env.DATABASE_PORT),
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_NAME,
+  entities,
+  logging: true,
+  synchronize: true,
+});
+
+const ForFeatureModuel = TypeOrmModule.forFeature(entities);
 
 @Module({
   imports: [ForRootModule, ForFeatureModuel],

@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { SignInDto } from './dto/SignIn.dto';
 import { JwtService } from '../Core/services/jwt.service';
-import { ExpiresInE, JWTPayloadI } from '../Core/services/types/jwt.types';
+import { ExpiresIn, JWTPayloadI } from '../Core/services/types/jwt.types';
 
 @Injectable()
 export class AuthService {
@@ -28,7 +28,7 @@ export class AuthService {
         auth,
       });
 
-      return true;
+      return auth;
     } catch (err) {
       throw new HttpException(err, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -48,7 +48,7 @@ export class AuthService {
           professionId: userData.professionId,
           authId: userData.auth.id,
         },
-        ExpiresInE.ACCESS_TOKEN,
+        ExpiresIn.ACCESS_TOKEN,
       );
       const refreshToken = this.jwtService.generateToken(
         {
@@ -57,18 +57,18 @@ export class AuthService {
           professionId: userData.professionId,
           authId: userData.auth.id,
         },
-        ExpiresInE.REFRESH_TOKEN,
+        ExpiresIn.REFRESH_TOKEN,
       );
 
       await this.authRepository.update(userData.auth.id, {
-        accessToken,
         refreshToken,
       });
-
-      userData.auth.accessToken = accessToken;
       userData.auth.refreshToken = refreshToken;
 
-      return userData;
+      return {
+        ...userData,
+        accessToken,
+      };
     } else {
       return false;
     }
@@ -88,7 +88,6 @@ export class AuthService {
       where: [{ id: user.authId }],
     });
 
-    uAuth.accessToken = null;
     uAuth.refreshToken = null;
 
     this.authRepository.save(uAuth);

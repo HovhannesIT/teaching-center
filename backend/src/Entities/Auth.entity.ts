@@ -12,9 +12,6 @@ export class Auth {
   id: number;
 
   @Column('varchar', { nullable: true })
-  accessToken: string;
-
-  @Column('varchar', { nullable: true })
   refreshToken: string;
 
   @CreateDateColumn()
