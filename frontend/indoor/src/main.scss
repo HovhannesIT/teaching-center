@@ -1,14 +1,53 @@
+:root {
+  --primary: rgb(41, 176, 31);
+  --secondary: rgb(102, 102, 102);
+  --main: #101418;
+  --text: #ececec;
+  --borders: #424242;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  background-color: var(--main);
+  color: var(--text);
+  font-family: Roboto;
 }
 
-:root {
-  --primary: #1b9812;
-  --secondary: #101418;
-  --text: #ececec;
-  --borders: #424242;
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+button, input {
+  outline: 0;
+  border: none;
+  font-family: Roboto;
+  cursor: pointer;
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  25% {
+    -webkit-transform: rotate3d(0, 0, 1, 90deg);
+    transform: rotate3d(0, 0, 1, 90deg);
+  }
+  50% {
+    -webkit-transform: rotate3d(0, 0, 1, 180deg);
+    transform: rotate3d(0, 0, 1, 180deg);
+  }
+  75% {
+    -webkit-transform: rotate3d(0, 0, 1, 270deg);
+    transform: rotate3d(0, 0, 1, 270deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
 }

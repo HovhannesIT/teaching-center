@@ -1,4 +1,11 @@
-export const Cart = () => {
+import { Container } from './styles';
+import { CompT } from './types';
 
-  return <></>
+export const Cart: CompT = (props) => {
+  const { children } = props;
+  return (
+    <Container>
+      {children}
+    </Container>
+  )
 }
