@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./main.scss";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, UIKit } from "./pages";
+import { Home, UIKit, Support } from "./pages";
 
 const router = createBrowserRouter([
   {
@@ -11,9 +11,13 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
+    path: "/support",
+    element: <Support />,
+  },
+  {
     path: "/ui-kit",
     element: <UIKit />,
-  },
+  }
 ]);
 
 const root = ReactDOM.createRoot(

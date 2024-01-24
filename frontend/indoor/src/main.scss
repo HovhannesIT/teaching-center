@@ -2,6 +2,7 @@
   --primary: rgb(41, 176, 31);
   --secondary: rgb(102, 102, 102);
   --main: #101418;
+  --black: #121212;
   --text: #ececec;
   --borders: #424242;
 }
@@ -14,6 +15,7 @@ body {
   margin: 0;
   background-color: var(--main);
   color: var(--text);
+  font-size: 12px;
   font-family: Roboto;
 }
 
