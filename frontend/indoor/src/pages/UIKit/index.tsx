@@ -3,7 +3,7 @@ import { KITComponents } from "..";
 import { Container } from "./styles";
 
 export const UIKit = () => {
-  const [datePickerValue, setDatePickerValue] = useState('2024-02-24');
+  const [datePickerValue, setDatePickerValue] = useState("2024-02-24");
 
   return (
     <Container>
@@ -11,12 +11,14 @@ export const UIKit = () => {
       <div className="section">
         <p>Button</p>
         <ul className="states">
-          <KITComponents.Button>Button Default</KITComponents.Button>
-          <KITComponents.Button type="secondary">
+          <KITComponents.Button>
+            Button Default
+          </KITComponents.Button>
+          <KITComponents.Button theme="secondary">
             Button Secondary
           </KITComponents.Button>
           <KITComponents.Button loading>Button Loading</KITComponents.Button>
-          <KITComponents.Button type="secondary" loading>
+          <KITComponents.Button theme="secondary" loading>
             Button Secondary Loading
           </KITComponents.Button>
         </ul>
@@ -66,9 +68,12 @@ export const UIKit = () => {
         </div>
       </div>
       <div className="section">
-        <p>DatePicker</p>
+        <p>Date Picker</p>
         <div className="states">
-          <KITComponents.DatePicker value={datePickerValue} onChange={(value) => setDatePickerValue(value)} />
+          <KITComponents.DatePicker
+            value={datePickerValue}
+            onChange={(value) => setDatePickerValue(value)}
+          />
         </div>
       </div>
       <div className="section">

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   max-width: 900px;
-  margin: 30px auto 50px auto;
+  margin: 30px auto 300px auto;
 
   h1 {
     text-align: center;

@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import { PropsI } from "./types";
 
-export const Container = styled.button<PropsI>`
+export const Container = styled.button<{theme: string}>`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 30px;
   color: var(--text);
-  background-color: var(--${({ type }) => type});
+  background-color: var(--${({ theme }) => theme});
   border-radius: 10px;
   .loading {
     margin-left: 5px;

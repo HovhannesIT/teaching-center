@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Container, PopUP } from "./styles";
-import { CompT, StateI } from "./types";
+import { CompT, PopUpPropsI, StateI } from "./types";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 
 import moment from "moment";
 import { createPortal } from "react-dom";
 import { Input } from "../Input";
+import { Button } from "../Button";
 
 function getDaysInMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate();
@@ -19,6 +20,11 @@ export const DatePicker: CompT = (props) => {
     year: 2024,
     month: 1,
     day: 1,
+  });
+
+  const [popUp, setPopUp] = useState<PopUpPropsI>({
+    left: -1000000,
+    top: -1000000,
   });
 
   const [selected, setSelected] = useState<"month" | "year">("month");
@@ -84,6 +90,7 @@ export const DatePicker: CompT = (props) => {
     for (let i = 1; i <= daysInTheMonth; i++) {
       daysJSX.push(
         <div
+          key={i + state.day + state.year}
           className={state.day === i ? " selected" : ""}
           onClick={() => selectDayHandler(i)}
         >
@@ -95,8 +102,30 @@ export const DatePicker: CompT = (props) => {
     return daysJSX;
   };
 
+  const onInputFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
+    setPopUp({
+      top: e.target.offsetTop,
+      left: e.target.offsetLeft - 1,
+    });
+  };
+
+  const onPopUpBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {
+    setPopUp({
+      left: -100000,
+      top: -100000,
+    });
+
+    onChange(
+      moment(`${state.year}-${state.month}-${state.day}`).format("MM/DD/YYYY")
+    );
+
+    if (inputRef.current) {
+      inputRef.current.value = `${state.year}-${state.month}-${state.day}`;
+    }
+  };
+
   const PopUpComponent = (
-    <PopUP>
+    <PopUP tabIndex={0} onBlur={onPopUpBlur} {...popUp}>
       <div className="controller">
         <div
           onClick={() => controllerActionHandler("minus")}
@@ -126,6 +155,25 @@ export const DatePicker: CompT = (props) => {
         </div>
       </div>
       <div className="calendar">{renderDaysInTheMonth()}</div>
+      <div className="actions">
+        <Button
+          onClick={() => {
+            if (inputRef.current) {
+              inputRef.current.value = `${state.year}-${state.month}-${state.day}`;
+            }
+            onChange(
+              moment(`${state.year}-${state.month}-${state.day}`).format(
+                "MM/DD/YYYY"
+              )
+            );
+          }}
+        >
+          Save
+        </Button>
+        <Button onClick={() => setPopUp({ left: -100000, top: -100000 })}>
+          Close
+        </Button>
+      </div>
     </PopUP>
   );
 
@@ -136,7 +184,7 @@ export const DatePicker: CompT = (props) => {
 
   return (
     <Container>
-      <Input ref={inputRef} />
+      <Input onFocus={onInputFocus} ref={inputRef} />
       {PupUPortaled}
     </Container>
   );

@@ -11,4 +11,7 @@ export interface StateI {
 
 export type CompT = React.FC<PropsI>
 
-
+export interface PopUpPropsI {
+  top: number;
+  left: number;
+}

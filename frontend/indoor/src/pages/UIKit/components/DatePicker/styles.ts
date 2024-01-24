@@ -1,10 +1,19 @@
 import styled from 'styled-components';
+import { PopUpPropsI } from './types';
 
 
-export const Container = styled.div``;
-export const PopUP = styled.div`
+export const Container = styled.div`
+  > input {
+    width: 100%;
+  }
+`;
+export const PopUP = styled.div<PopUpPropsI>`
+  position: absolute;
+  left: ${({ left }) => left.toString()}px;
+  top: ${({ top }) => top.toString()}px;
   width: 250px;
   background-color: var(--main);
+  z-index: 10000;
   .controller {
     margin-bottom: 10px;
     display: flex;
@@ -54,5 +63,11 @@ export const PopUP = styled.div`
         border: 1px solid var(--primary);
       }
     }
+  }
+  .actions {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+    margin-top: 5px;
   }
 `
