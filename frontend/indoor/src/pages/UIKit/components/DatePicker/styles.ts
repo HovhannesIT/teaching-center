@@ -50,6 +50,7 @@ export const PopUP = styled.div<PopUpPropsI>`
     justify-content: flex-start;
     gap: 5px;
     height: 175px;
+    line-height: 20px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     > div {
       flex: 0 0 35px;

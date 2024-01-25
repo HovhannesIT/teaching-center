@@ -3,8 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./main.scss";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, UIKit, Support, Looking } from "./pages";
+import { Home, UIKit, Support, Looking, Donation } from "./pages";
 import { Professions } from "./pages/Professions";
+import { Login, Register } from "./pages/Auth";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,18 @@ const router = createBrowserRouter([
   {
     path: "/looking",
     element: <Looking />,
+  },
+  {
+    path: "/donation",
+    element: <Donation />,
+  },
+  {
+    path: "/auth/login",
+    element: <Login />,
+  },
+  {
+    path: "/auth/register",
+    element: <Register />,
   },
   {
     path: "/ui-kit",

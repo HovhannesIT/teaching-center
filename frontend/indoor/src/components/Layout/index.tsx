@@ -32,9 +32,13 @@ export const Layout: CompT = (props) => {
           <li>
             <Link to={"/support"}>SUPPORT</Link>
           </li>
+          <li>
+            <Link to={"/donation"}>DONATE</Link>
+          </li>
         </ul>
         <ul>
-          <li>LOGIN</li>
+          <li><Link to={"/auth/login"}>LOGIN</Link></li>
+          <li><Link to={"/auth/register"}>REGISTER</Link></li>
         </ul>
       </AppBarContainer>
       {children}
