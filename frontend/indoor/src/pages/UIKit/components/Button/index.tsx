@@ -6,7 +6,7 @@ export const Button: CompT = (props) => {
   const { type = "primary", loading = false, children, ...rest } = props;
 
   return (
-    <Container theme={type} {...rest}>
+    <Container theme={type} {...rest} disabled={loading}>
       {children}
       {loading ? <AiOutlineLoading className="loading" /> : <></>}
     </Container>

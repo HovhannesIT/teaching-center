@@ -13,7 +13,7 @@ export const PopUP = styled.div<PopUpPropsI>`
   top: ${({ top }) => top.toString()}px;
   width: 250px;
   background-color: var(--main);
-  z-index: 10000;
+  z-index: 100;
   .controller {
     margin-bottom: 10px;
     display: flex;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 360px;
+  max-width: 600px;
   margin: 10px auto;
   h3 {
     color: var(--primary);
@@ -9,7 +9,6 @@ export const Container = styled.div`
     font-size: 1.4rem;
     margin: 5px 0;
   }
-
   // move to ui-kit
   .type {
     margin-top: 15px;
@@ -48,7 +47,12 @@ export const Container = styled.div`
     background-color: var(--main);
     color: var(--primary);
   }
-
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+  }
   > form > div {
     display: flex;
     flex-direction: column;
@@ -63,6 +67,9 @@ export const Container = styled.div`
         font-size: 0.7rem;
       }
       input {
+        width: 100%;
+      }
+      button {
         width: 100%;
       }
     }

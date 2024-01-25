@@ -7,12 +7,15 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Profession {
+export class SuggestedImprovement {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column('text')
+  description: string;
+
   @Column('varchar')
-  name: string;
+  ip: string;
 
   @CreateDateColumn()
   created_at: Date;

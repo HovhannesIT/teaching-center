@@ -32,9 +32,9 @@ export const Layout: CompT = (props) => {
           <li>
             <Link to={"/support"}>SUPPORT</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to={"/donation"}>DONATE</Link>
-          </li>
+          </li> */}
           <li>
             <Link to={"/invitations"}>INVITATIONS</Link>
           </li>

@@ -9,14 +9,14 @@ import {
   OneToOne,
 } from 'typeorm';
 import { User } from './User.entity';
-import { Profession } from './Profession.entity';
+import { Professions } from './Professions.entity';
 
 @Entity()
 export class SeekingLooking {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => Profession, (profession) => profession.id)
+  @OneToOne(() => Professions, (profession) => profession.id)
   @JoinColumn()
   profession: number;
 

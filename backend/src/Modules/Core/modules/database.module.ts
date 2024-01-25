@@ -4,12 +4,15 @@ import {
   Auth,
   Contract,
   Invitations,
-  Profession,
+  Professions,
   SeekingLooking,
   User,
+  CommunicationTypes,
 } from '../../../entities';
 
 import * as dotenv from 'dotenv';
+import { SuggestedImprovement } from '../../../entities/suggestedImprovement.entity';
+import { SuggestedProfession } from '../../../entities/suggestedProfession';
 
 dotenv.config();
 
@@ -18,8 +21,11 @@ const entities = [
   User,
   Contract,
   Invitations,
-  Profession,
+  Professions,
   SeekingLooking,
+  CommunicationTypes,
+  SuggestedImprovement,
+  SuggestedProfession,
 ];
 
 export const ForRootModule = TypeOrmModule.forRoot({

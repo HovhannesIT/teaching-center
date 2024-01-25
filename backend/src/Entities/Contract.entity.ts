@@ -8,7 +8,7 @@ import {
   OneToOne,
 } from 'typeorm';
 import { User } from './User.entity';
-import { Profession } from './Profession.entity';
+import { Professions } from './Professions.entity';
 import { PriceTypesE } from '../types/enums/PriceTypes';
 import { CurrenciesE } from '../types/enums/Currencies';
 import { ContractTypeE } from '../types/enums/ContractType';
@@ -18,9 +18,9 @@ export class Contract {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => Profession, (profession) => profession.id)
+  @OneToOne(() => Professions, (profession) => profession.id)
   @JoinColumn()
-  profession: Profession;
+  profession: Professions;
 
   @OneToOne(() => User, (user) => user.id)
   @JoinColumn()

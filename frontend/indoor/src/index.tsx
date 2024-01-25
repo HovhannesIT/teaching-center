@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home, UIKit, Support, Looking, Donation, Invitations, Contracts } from "./pages";
 import { Professions } from "./pages/Professions";
 import { Login, Register } from "./pages/Auth";
+import { InitializeAxiosInterceptors } from "./interceptors.axios";
 
 const router = createBrowserRouter([
   {
@@ -32,10 +33,10 @@ const router = createBrowserRouter([
     path: "/contracts",
     element: <Contracts />,
   },
-  {
-    path: "/donation",
-    element: <Donation />,
-  },
+  // {
+  //   path: "/donation",
+  //   element: <Donation />,
+  // },
   {
     path: "/auth/login",
     element: <Login />,
@@ -49,6 +50,8 @@ const router = createBrowserRouter([
     element: <UIKit />,
   }
 ]);
+
+InitializeAxiosInterceptors();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

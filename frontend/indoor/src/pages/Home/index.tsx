@@ -23,7 +23,7 @@ export const Home = () => {
             <img src={student} alt="" />
             <p>
             <p className="title">TIME TO LEARN</p>
-              <span>Hello.</span>Be sure, Knowledge(Profession) its last type of
+              <span>Hello.</span>Be sure, Knowledge(Professions) its last type of
               power in this century. find your friend (Teacher,Coach) in this
               platform and enjoy it. welcome!
             </p>

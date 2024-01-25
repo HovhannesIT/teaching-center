@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const PopUpContainer = styled.div`
+  text-align: center;
+  font-size: 2rem;
+`;
+
 export const Container = styled.div`
   &.sec{
     display: flex;
@@ -73,7 +78,7 @@ export const Container = styled.div`
           color: white;
           font-size: 1.2rem;
           font-family: Single Day;
-          border-radius: 15px;
+          border-radius: 5px;
         }
       }
     }
