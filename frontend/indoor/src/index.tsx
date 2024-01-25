@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./main.scss";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, UIKit, Support } from "./pages";
+import { Home, UIKit, Support, Looking } from "./pages";
+import { Professions } from "./pages/Professions";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,14 @@ const router = createBrowserRouter([
   {
     path: "/support",
     element: <Support />,
+  },
+  {
+    path: "/professions",
+    element: <Professions />,
+  },
+  {
+    path: "/looking",
+    element: <Looking />,
   },
   {
     path: "/ui-kit",

@@ -8,7 +8,7 @@ export const Input = styled.input`
   height: 30px;
   color: var(--text);
   outline: 0;
-
+  font-size: 1.1rem;
   &:focus {
     border-color: white;
   }

@@ -8,11 +8,11 @@ export const Home = () => {
   return (
     <Layout>
       <Container>
-        <p className="title">WELCOME TO PLACE OF PEACE</p>
         <div>
           <section>
             <img src={teacher} alt="" />
             <p>
+            <p className="title">DO WHAT YOU LOVE TO DO</p>
               <span>Hey! welcome</span> to platform where you can find people
               who are seriously interested in your profession, extend your
               experience with them and make this world much better. hope you
@@ -22,8 +22,9 @@ export const Home = () => {
           <section>
             <img src={student} alt="" />
             <p>
+            <p className="title">TIME TO LEARN</p>
               <span>Hello.</span>Be sure, Knowledge(Profession) its last type of
-              power,gun in this age. find your friend (Teacher,coach) in this
+              power in this century. find your friend (Teacher,Coach) in this
               platform and enjoy it. welcome!
             </p>
           </section>

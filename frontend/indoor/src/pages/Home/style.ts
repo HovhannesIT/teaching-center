@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 
 export const Container = styled.div`
+  font-family: Single Day;
   .title {
     font-size: 2.5rem;
-    margin-left: 10px;
     color: var(--primary);
   }
   > div {
