@@ -10,7 +10,7 @@ export const Container = styled.div`
     margin: 5px 0;
   }
 
-  // hove to ui-kit
+  // move to ui-kit
   .type {
     margin-top: 15px;
     display: flex;

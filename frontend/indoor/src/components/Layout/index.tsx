@@ -35,6 +35,12 @@ export const Layout: CompT = (props) => {
           <li>
             <Link to={"/donation"}>DONATE</Link>
           </li>
+          <li>
+            <Link to={"/invitations"}>INVITATIONS</Link>
+          </li>
+          <li>
+            <Link to={"/contracts"}>CONTRACTS</Link>
+          </li>
         </ul>
         <ul>
           <li><Link to={"/auth/login"}>LOGIN</Link></li>

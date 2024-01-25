@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./main.scss";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, UIKit, Support, Looking, Donation } from "./pages";
+import { Home, UIKit, Support, Looking, Donation, Invitations, Contracts } from "./pages";
 import { Professions } from "./pages/Professions";
 import { Login, Register } from "./pages/Auth";
 
@@ -23,6 +23,14 @@ const router = createBrowserRouter([
   {
     path: "/looking",
     element: <Looking />,
+  },
+  {
+    path: "/invitations",
+    element: <Invitations />,
+  },
+  {
+    path: "/contracts",
+    element: <Contracts />,
   },
   {
     path: "/donation",
