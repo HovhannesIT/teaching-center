@@ -6,8 +6,8 @@ import { Professions } from './entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SuggestedImprovementDTO } from './dto/SuggestedImprovement.dto';
 import { SuggestedProfessionDTO } from './dto/SuggestedProfession.dto';
-import { SuggestedImprovement } from './entities/suggestedImprovement.entity';
-import { SuggestedProfession } from './entities/suggestedProfession';
+import { SuggestedImprovement } from './entities/SuggestedImprovement.entity';
+import { SuggestedProfession } from './entities/SuggestedProfession';
 import { instanceToPlain } from 'class-transformer';
 
 @Controller()
@@ -46,16 +46,15 @@ export class AppController {
   async suggestProfement(@Ip() ip, @Body() body: SuggestedImprovementDTO) {
     const oneWeekAgo = new Date();
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-
     const entities = await this.suggestedImprovement
       .createQueryBuilder('entity')
-      .where('entity.createdDate < :oneWeekAgo', { oneWeekAgo })
-      .andWhere('entity.ipAddress = :ipAddress', { ip })
+      .where('entity.created_at < :oneWeekAgo', { oneWeekAgo })
+      .andWhere('entity.ip = :ip', { ip })
       .getMany();
 
     if (!entities.length) {
       const suggestedImprovement = this.suggestedImprovement.create(
-        instanceToPlain(body),
+        instanceToPlain({ ...body, ip }),
       );
 
       await this.suggestedImprovement.save(suggestedImprovement);
@@ -68,18 +67,18 @@ export class AppController {
     const oneWeekAgo = new Date();
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
-    const entities = await this.suggestedImprovement
+    const entities = await this.suggestedProfession
       .createQueryBuilder('entity')
-      .where('entity.createdDate < :oneWeekAgo', { oneWeekAgo })
-      .andWhere('entity.ipAddress = :ipAddress', { ip })
+      .where('entity.created_at < :oneWeekAgo', { oneWeekAgo })
+      .andWhere('entity.ip = :ip', { ip })
       .getMany();
 
     if (!entities.length) {
       const suggestedProfession = this.suggestedProfession.create(
-        instanceToPlain(body),
+        instanceToPlain({ ...body, ip }),
       );
 
-      await this.suggestedImprovement.save(suggestedProfession);
+      await this.suggestedProfession.save(suggestedProfession);
     }
 
     return null;

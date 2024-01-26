@@ -5,3 +5,5 @@ export { Professions } from './Professions.entity';
 export { SeekingLooking } from './SeekingLooking.entity';
 export { User } from './User.entity';
 export { CommunicationTypes } from './CommunicationTypes.entity';
+export { SuggestedImprovement } from './SuggestedImprovement.entity';
+export { SuggestedProfession } from './SuggestedProfession';

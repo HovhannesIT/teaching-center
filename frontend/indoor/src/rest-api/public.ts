@@ -18,3 +18,11 @@ export const signUp = async (body: SignUpRequestI) => {
 export const signIn = async (body: SignInRequestI) => {
   return await axios.post('/auth/sign-in', body);
 }
+
+export const suggestProfession = async (prof: string) => {
+  return await axios.post('/suggest-profession', { name: prof })
+}
+
+export const suggestImprovement = async (improvement: string) => {
+  return await axios.post('/suggest-improvement', { description: improvement })
+}

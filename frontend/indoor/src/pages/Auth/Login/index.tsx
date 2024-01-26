@@ -17,15 +17,19 @@ export const Login = observer(() => {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
-  const onLogin = async (body: LoginFormInterface) => {
+  const onLogin = (body: LoginFormInterface) => {
     setErrors([]);
-    const data = await UserStore.signIn(body).catch((err) => {
-      const errors = err.response.data.message;
-      setErrors(errors);
-    });
+    UserStore.signIn(body)
+      .then((data) => {
+        localStorage.setItem("token", data.accessToken);
+        navigate("/");
+      })
+      .catch((err) => {
+        const errors = err.response.data.message;
+        setErrors(errors);
+      });
 
-    localStorage.setItem('token', data.accessToken);
-    navigate('/');
+
   };
 
   return (
@@ -49,12 +53,12 @@ export const Login = observer(() => {
         </form>
 
         {errors.length ? (
-        <div className="errors">
-          {errors.map((e) => (
-            <div key={e}>- {e}</div>
-          ))}
-        </div>
-      ) : null}
+          <div className="errors">
+            {errors.map((e) => (
+              <div key={e}>- {e}</div>
+            ))}
+          </div>
+        ) : null}
       </Container>
     </Layout>
   );

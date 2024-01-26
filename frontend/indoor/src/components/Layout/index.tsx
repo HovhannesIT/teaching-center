@@ -1,16 +1,52 @@
+import Icon from "./Icon.png";
+import { observer } from "mobx-react-lite";
+import { useState } from "react";
 import { CompT } from "./types";
 import { Container, AppBarContainer } from "./styles";
-// import { TiThMenu } from "react-icons/ti";
 import { Link } from "react-router-dom";
-import Icon from "./Icon.png";
 
-export const Layout: CompT = (props) => {
+import { UserStore } from "../../store/user";
+import { FaChevronCircleDown, FaChevronCircleUp } from "react-icons/fa";
+import { logout } from "../../rest-api";
+import { MobileMenu } from "../MobileMenu";
+
+import { GiHamburgerMenu } from "react-icons/gi";
+
+export const Layout: CompT = observer((props) => {
   const { children } = props;
+  const [openUserMenu, setOpenUserMenu] = useState<boolean>(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   return (
     <Container>
       <AppBarContainer>
-        <ul>
-          {/* <li><TiThMenu /></li> */}
+        <button className="mobile-hamb" onClick={() => setIsMobileMenuOpen(true)}><GiHamburgerMenu size={30} /></button>
+        <MobileMenu open={isMobileMenuOpen} onRequestToClose={() => setIsMobileMenuOpen(false)}>
+          <ul>
+            <li>
+              <Link to={"/"}>HOME</Link>
+            </li>
+            <li>
+              <Link to={"/looking"}>LOOKING</Link>
+            </li>
+            <li>
+              <Link to={"/professions"}>PROFESSIONS</Link>
+            </li>
+            <li>
+              <Link to={"/support"}>SUPPORT</Link>
+            </li>
+            {UserStore.data ? (
+              <>
+                <li>
+                  <Link to={"/invitations"}>INVITATIONS</Link>
+                </li>
+                <li>
+                  <Link to={"/contracts"}>CONTRACTS</Link>
+                </li>
+              </>
+            ) : null}
+          </ul>
+        </MobileMenu>
+        <ul className="desktop-nav">
           <Link to={"/"}>
             <li className="title">
               <div
@@ -32,22 +68,42 @@ export const Layout: CompT = (props) => {
           <li>
             <Link to={"/support"}>SUPPORT</Link>
           </li>
-          {/* <li>
-            <Link to={"/donation"}>DONATE</Link>
-          </li> */}
-          <li>
-            <Link to={"/invitations"}>INVITATIONS</Link>
-          </li>
-          <li>
-            <Link to={"/contracts"}>CONTRACTS</Link>
-          </li>
+          {UserStore.data ? (
+            <>
+              <li>
+                <Link to={"/invitations"}>INVITATIONS</Link>
+              </li>
+              <li>
+                <Link to={"/contracts"}>CONTRACTS</Link>
+              </li>
+            </>
+          ) : null}
         </ul>
         <ul>
-          <li><Link to={"/auth/login"}>LOGIN</Link></li>
-          <li><Link to={"/auth/register"}>REGISTER</Link></li>
+          {!UserStore.data ? (
+            <>
+              <li>
+                <Link to={"/auth/login"}>LOGIN</Link>
+              </li>
+              <li>
+                <Link to={"/auth/register"}>REGISTER</Link>
+              </li>
+            </>
+          ) : (
+            <li onClick={() => setOpenUserMenu(!openUserMenu)} className="user">
+              {UserStore.data.username}
+              {openUserMenu ? <FaChevronCircleUp /> : <FaChevronCircleDown />}
+              <ul className={`${openUserMenu ? "open" : "closed"}`}>
+                <li>
+                  <Link to="/profile">Profile</Link>
+                </li>
+                <li onClick={() => logout()}>Sign Out</li>
+              </ul>
+            </li>
+          )}
         </ul>
       </AppBarContainer>
       {children}
     </Container>
   );
-};
+});

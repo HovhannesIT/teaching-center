@@ -6,13 +6,32 @@ import suggestUSPNG from "../../images/suggest-us.png";
 
 import { Container, PopUpContainer } from "./style";
 import { useState } from "react";
+import { suggestImprovement, suggestProfession } from "../../rest-api/public";
 
 export const Support = () => {
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
 
+  const [profession, setProfession] = useState("");
+  const [improvement, setImprovement] = useState("");
+
+  const sendImprovement = async () => {
+    suggestImprovement(improvement);
+    setShowPopUp(true);
+  };
+
+  const sendProfession = async () => {
+    suggestProfession(profession);
+
+    setShowPopUp(true);
+  };
+
   return (
     <Layout>
-      <PopUp visible={showPopUp} type="alert" onAction={() => setShowPopUp(false)}>
+      <PopUp
+        visible={showPopUp}
+        type="alert"
+        onAction={() => setShowPopUp(false)}
+      >
         <PopUpContainer>
           <p>Thank You</p>
         </PopUpContainer>
@@ -32,10 +51,15 @@ export const Support = () => {
               <p className="title">
                 Suggest us feature or improvements which you prefer
               </p>
-              <form>
-                <textarea></textarea>
+              <form onSubmit={(e) => e.preventDefault()}>
+                <textarea
+                  value={profession}
+                  onChange={({ target: { value } }) => setProfession(value)}
+                ></textarea>
                 <div className="reversed">
-                  <button type="submit">SEND</button>
+                  <button onClick={() => sendImprovement()} type="submit">
+                    SEND
+                  </button>
                 </div>
               </form>
             </div>
@@ -47,10 +71,15 @@ export const Support = () => {
               Send Professions which you are not able to see in platform
             </p>
             <div>
-              <form>
-                <Input />
+              <form onSubmit={(e) => e.preventDefault()}>
+                <Input
+                  value={improvement}
+                  onChange={({ target: { value } }) => setImprovement(value)}
+                />
                 <div>
-                  <button type="submit">SEND</button>
+                  <button onClick={() => sendProfession()} type="submit">
+                    SEND
+                  </button>
                 </div>
               </form>
             </div>

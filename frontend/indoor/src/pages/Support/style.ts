@@ -9,7 +9,6 @@ export const Container = styled.div`
   &.sec{
     display: flex;
     justify-content: flex-end;
-
     .block {
       img {
         width: 250px;
@@ -43,6 +42,13 @@ export const Container = styled.div`
   }
   section {
     margin: 40px 30px;
+
+    @media only screen and (max-width: 600px) {
+      margin: 0;
+      button {
+        width: 100%;
+      }
+    }
     div {
       width: 100%;
       form {

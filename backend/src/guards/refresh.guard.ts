@@ -5,12 +5,12 @@ import { AuthService } from '../modules/Auth/auth.service';
 export class RefreshGuard implements CanActivate {
   constructor(private readonly authService: AuthService) {}
 
-  canActivate(context: ExecutionContext) {
+  async canActivate(context: ExecutionContext) {
     const request = context.switchToHttp().getRequest();
     const headers = request.headers;
     const valid = this.authService.checkTokenValidity(headers.refresh);
-
-    if (headers.refresh && valid) {
+    const tokenInDB = await this.authService.isTokenExistInDB(headers.token);
+    if (headers.refresh && valid && tokenInDB) {
       request.user = valid;
       return true;
     }

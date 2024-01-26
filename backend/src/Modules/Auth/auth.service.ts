@@ -62,6 +62,7 @@ export class AuthService {
 
       await this.authRepository.update(userData.auth.id, {
         refreshToken,
+        accessToken,
       });
       userData.auth.refreshToken = refreshToken;
 
@@ -70,6 +71,15 @@ export class AuthService {
         accessToken,
       };
     } else {
+      return false;
+    }
+  }
+
+  async isTokenExistInDB(token: string) {
+    try {
+      await this.authRepository.findOne({ where: { accessToken: token } });
+      return true;
+    } catch (err) {
       return false;
     }
   }
