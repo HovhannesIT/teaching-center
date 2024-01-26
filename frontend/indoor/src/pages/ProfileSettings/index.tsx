@@ -7,50 +7,83 @@ import { useForm } from "react-hook-form";
 import moment from "moment";
 import { professionsList } from "../../rest-api/public";
 import { communcationTypesList } from "../../rest-api/public";
+import { observer } from "mobx-react-lite";
+import { UserStore } from "../../store/user";
+import { updateUserInfo } from "../../rest-api/private";
 import { useNavigate } from "react-router-dom";
 
 interface formInterface {
   firstName: string;
   lastName: string;
-  username: string;
-  email: string;
-  password: string;
+  type: string;
   professionId: string;
   phoneNumber: string;
+  birthDate: string;
   primaryCommunicationType: number;
 }
 
-export const Register = () => {
+export const ProfileSettings = observer(() => {
   const [onLoad, setOnLoad] = useState<boolean>(false);
   const [professions, setProfessions] = useState<
     { id: number; name: string; description: string }[]
   >([]);
-
-  const navigate = useNavigate();
   const [communicationTypes, setCommunicationTypes] = useState<
     { id: number; name: string }[]
   >([]);
   const [errorList, setErrorList] = useState<string[]>([]);
-
+  const navigate = useNavigate();
   const [birthDate, setBirthDate] = useState(moment().format("YYYY-MM-DD"));
   const [type, setType] = useState("student");
 
-  const { register, handleSubmit } = useForm<formInterface>();
+  const { register, handleSubmit, setValue } = useForm<formInterface>();
+
+  const syncData = () => {
+    professionsList().then((data) => {
+      setProfessions(data);
+      communcationTypesList().then((data) => {
+        setCommunicationTypes(data);
+        for (const key in UserStore.data) {
+          const value = UserStore.data[key];
+          setValue(
+            key as
+              | "firstName"
+              | "lastName"
+              | "professionId"
+              | "phoneNumber"
+              | "primaryCommunicationType",
+            value
+          );
+        }
+      });
+    });
+  };
 
   useEffect(() => {
-    professionsList().then((data) => setProfessions(data));
-    communcationTypesList().then((data) => setCommunicationTypes(data));
+    syncData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onRegister = (formData: formInterface) => {
+  const onUpdate = (formData: formInterface) => {
     setOnLoad(true);
+    
+    updateUserInfo({
+      ...formData,
+      professionId: Number(formData.professionId),
+      primaryCommunicationType: String(formData.primaryCommunicationType),
+    }).then((data) => {
+      if(!Array.isArray(data)) {
+        navigate('/');
+      } else {
+        setErrorList(data);
+      }
+    });
   };
 
   return (
     <Layout>
       <Container>
-        <h3>REGISTER</h3>
-        <form onSubmit={handleSubmit(onRegister)}>
+        <h3>PROFILE SETTINGS</h3>
+        <form onSubmit={handleSubmit(onUpdate)}>
           <Cart>
             <div className="cart">
               <label>FIRST NAME *</label>
@@ -60,23 +93,6 @@ export const Register = () => {
               <label>LAST NAME</label>
               <Input {...register("lastName")} />
             </div>
-            <div className="cart">
-              <label>USERNAME *</label>
-              <Input {...register("username")} />
-            </div>
-            <div className="cart">
-              <label>EMAIL *</label>
-              <Input type="email" {...register("email")} />
-            </div>
-            <div className="cart">
-              <label>PASSWORD *</label>
-              <Input type="password" {...register("password")} />
-            </div>
-            <div className="cart">
-              <Button loading={onLoad}>REGISTER</Button>
-            </div>
-          </Cart>
-          <Cart>
             <div className="cart">
               <label>BIRTH DATE *</label>
               <DatePicker
@@ -137,6 +153,9 @@ export const Register = () => {
                 ))}
               </select>
             </div>
+            <div className="cart">
+              <Button loading={onLoad}>UPDATE USER INFO</Button>
+            </div>
           </Cart>
         </form>
         {errorList.length ? (
@@ -149,4 +168,4 @@ export const Register = () => {
       </Container>
     </Layout>
   );
-};
+});

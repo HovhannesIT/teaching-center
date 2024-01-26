@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+ 
+`;
 
 export const AppBarContainer = styled.div`
   display: flex;
@@ -9,6 +11,13 @@ export const AppBarContainer = styled.div`
   border-bottom: 1px solid var(--borders);
   background-color: var(--black);
   padding: 0 10px;
+
+  .private a, .semi-private a {
+    color: #eaff60 !important;
+    &:hover {
+      color: #eaff60 !important;
+    }
+  }
   .mobile-hamb {
     display: none;
     background-color: #121212;

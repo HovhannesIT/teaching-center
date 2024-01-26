@@ -25,7 +25,7 @@ export const Layout: CompT = observer((props) => {
             <li>
               <Link to={"/"}>HOME</Link>
             </li>
-            <li>
+            <li className="semi-private">
               <Link to={"/looking"}>LOOKING</Link>
             </li>
             <li>
@@ -36,10 +36,10 @@ export const Layout: CompT = observer((props) => {
             </li>
             {UserStore.data ? (
               <>
-                <li>
+                <li className="private">
                   <Link to={"/invitations"}>INVITATIONS</Link>
                 </li>
-                <li>
+                <li className="private">
                   <Link to={"/contracts"}>CONTRACTS</Link>
                 </li>
               </>
@@ -59,7 +59,7 @@ export const Layout: CompT = observer((props) => {
           <li>
             <Link to={"/"}>HOME</Link>
           </li>
-          <li>
+          <li className="semi-private">
             <Link to={"/looking"}>LOOKING</Link>
           </li>
           <li>
@@ -70,10 +70,10 @@ export const Layout: CompT = observer((props) => {
           </li>
           {UserStore.data ? (
             <>
-              <li>
+              <li className="private">
                 <Link to={"/invitations"}>INVITATIONS</Link>
               </li>
-              <li>
+              <li className="private">
                 <Link to={"/contracts"}>CONTRACTS</Link>
               </li>
             </>
@@ -95,7 +95,7 @@ export const Layout: CompT = observer((props) => {
               {openUserMenu ? <FaChevronCircleUp /> : <FaChevronCircleDown />}
               <ul className={`${openUserMenu ? "open" : "closed"}`}>
                 <li>
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/user/profile-settings">Profile</Link>
                 </li>
                 <li onClick={() => logout()}>Sign Out</li>
               </ul>

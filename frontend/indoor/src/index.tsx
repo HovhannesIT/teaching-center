@@ -7,6 +7,7 @@ import { Home, UIKit, Support, Looking, Invitations, Contracts } from "./pages";
 import { Professions } from "./pages/Professions";
 import { Login, Register } from "./pages/Auth";
 import { InitializeAxiosInterceptors } from "./interceptors.axios";
+import { ProfileSettings } from "./pages/ProfileSettings";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: "/auth/register",
     element: <Register />,
+  },
+  {
+    path: "/user/profile-settings",
+    element: <ProfileSettings />,
   },
   {
     path: "/ui-kit",
