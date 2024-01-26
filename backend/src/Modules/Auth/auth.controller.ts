@@ -32,7 +32,14 @@ export class AuthController {
     const user = await this.authService.createTokens(signInBody);
 
     if (!user) {
-      throw new HttpException('Incorrect credentials', HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        {
+          message: ['Incorrect credentials'],
+          error: 'Bad Request',
+          statusCode: 400,
+        },
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     return user;
@@ -48,12 +55,26 @@ export class AuthController {
       );
 
       if (!sqlRes) {
-        throw new HttpException('User allready exists', HttpStatus.BAD_REQUEST);
+        throw new HttpException(
+          {
+            message: ['User allready exists'],
+            error: 'Bad Request',
+            statusCode: 400,
+          },
+          HttpStatus.BAD_REQUEST,
+        );
       }
 
       return sqlRes;
     } catch (err) {
-      throw new HttpException(err, HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(
+        {
+          message: ['User allready exists'],
+          error: 'Bad Request',
+          statusCode: 400,
+        },
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 

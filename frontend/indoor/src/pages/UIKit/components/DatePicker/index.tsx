@@ -116,7 +116,7 @@ export const DatePicker: CompT = (props) => {
     });
 
     onChange(
-      moment(`${state.year}-${state.month}-${state.day}`).format("MM/DD/YYYY")
+      moment(`${state.year}-${state.month}-${state.day}`).format("YYYY-MM-DD")
     );
 
     if (inputRef.current) {
@@ -163,7 +163,7 @@ export const DatePicker: CompT = (props) => {
             }
             onChange(
               moment(`${state.year}-${state.month}-${state.day}`).format(
-                "MM/DD/YYYY"
+                "YYYY-MM-DD"
               )
             );
           }}

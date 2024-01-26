@@ -1,28 +1,61 @@
+import { useForm } from "react-hook-form";
 import { Layout } from "../../../components";
 import { Button, Cart, Input } from "../../UIKit/components";
 import { Container } from "./styles";
+import { UserStore } from "../../../store/user";
+import { useState } from "react";
+import { observer } from "mobx-react-lite";
+import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+interface LoginFormInterface {
+  email: string;
+  password: string;
+}
+
+export const Login = observer(() => {
+  const { register, handleSubmit } = useForm<LoginFormInterface>();
+  const [errors, setErrors] = useState([]);
+  const navigate = useNavigate();
+
+  const onLogin = async (body: LoginFormInterface) => {
+    setErrors([]);
+    const data = await UserStore.signIn(body).catch((err) => {
+      const errors = err.response.data.message;
+      setErrors(errors);
+    });
+
+    localStorage.setItem('token', data.accessToken);
+    navigate('/');
+  };
+
   return (
     <Layout>
       <Container>
         <h3>LOGIN</h3>
-        <form>
+        <form onSubmit={handleSubmit(onLogin)}>
           <Cart>
             <div className="cart">
-              <label>LOGIN</label>
-              <Input />
+              <label>EMAIL</label>
+              <Input {...register("email")} />
             </div>
             <div className="cart">
               <label>PASSWORD</label>
-              <Input type="password" />
+              <Input type="password" {...register("password")} />
             </div>
             <div className="action">
               <Button>Login</Button>
             </div>
           </Cart>
         </form>
+
+        {errors.length ? (
+        <div className="errors">
+          {errors.map((e) => (
+            <div key={e}>- {e}</div>
+          ))}
+        </div>
+      ) : null}
       </Container>
     </Layout>
   );
-};
+});

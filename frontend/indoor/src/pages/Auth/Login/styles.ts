@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 360px;
   margin: 10px auto;
+  .errors {
+    color: red;
+    margin-top: 10px;
+  }
   h3 {
     color: var(--primary);
     text-align: center;

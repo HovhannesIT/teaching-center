@@ -1,5 +1,6 @@
 export enum UserTypesE {
-  TEACHER = 'teacher',
-  STUDENT = 'student',
-  BOTH = 'both',
+  TEACHER = 'student',
+  STUDENT = 'teacher',
+  BOTH = 'enthusiast',
+  COACH = 'coach',
 }

@@ -9,6 +9,10 @@ export const Container = styled.div`
     font-size: 1.4rem;
     margin: 5px 0;
   }
+  .errors {
+    color: red;
+    margin-top: 10px;
+  }
   // move to ui-kit
   .type {
     margin-top: 15px;
@@ -47,6 +51,7 @@ export const Container = styled.div`
     background-color: var(--main);
     color: var(--primary);
   }
+  
   form {
     display: grid;
     grid-template-columns: 1fr 1fr;
