@@ -184,7 +184,7 @@ export const DatePicker: CompT = (props) => {
 
   return (
     <Container>
-      <Input defaultValue={value} onFocus={onInputFocus} ref={inputRef} />
+      <Input value={value} onFocus={onInputFocus} ref={inputRef} />
       {PupUPortaled}
     </Container>
   );

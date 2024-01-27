@@ -91,7 +91,7 @@ export const Layout: CompT = observer((props) => {
             </>
           ) : (
             <li onClick={() => setOpenUserMenu(!openUserMenu)} className="user">
-              {UserStore.data.username}
+              <div className="user-type">{UserStore.data.type}</div>{UserStore.data.username}
               {openUserMenu ? <FaChevronCircleUp /> : <FaChevronCircleDown />}
               <ul className={`${openUserMenu ? "open" : "closed"}`}>
                 <li>

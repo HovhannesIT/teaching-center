@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { UserStore } from "../store/user";
 
 export const getUserInfo = async () => {
@@ -10,6 +10,9 @@ export const getUserInfo = async () => {
         auth: token,
       },
     });
+
+    UserStore.setInfo(data);
+    
     return data;
   }
 

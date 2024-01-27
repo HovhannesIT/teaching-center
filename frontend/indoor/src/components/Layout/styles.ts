@@ -18,18 +18,27 @@ export const AppBarContainer = styled.div`
       color: #eaff60 !important;
     }
   }
+
+  .user-type {
+    font-size: 1rem;
+    text-transform: uppercase;
+    background-color: var(--primary-private);
+    color: black;
+    border-radius: 10px;
+    padding: 0 10px;
+  }
   .mobile-hamb {
     display: none;
     background-color: #121212;
     color: var(--primary);
   }
-  @media only screen and (max-width: 810px) {
+  @media only screen and (max-width: 925px) {
     .mobile-hamb {
       display: block;
     }
   }
   ul {
-    @media only screen and (max-width: 810px) {
+    @media only screen and (max-width: 925px) {
       &.desktop-nav {
         display: none;
       }
@@ -78,7 +87,7 @@ export const AppBarContainer = styled.div`
         flex-direction: column;
         gap: 10px;
         position: absolute;
-        width: 100px;
+        width: 233px;
         background-color: black;
         top: 22px;
         left: -4px;

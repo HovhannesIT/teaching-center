@@ -33,11 +33,15 @@ export const ProfileSettings = observer(() => {
   const [errorList, setErrorList] = useState<string[]>([]);
   const navigate = useNavigate();
   const [birthDate, setBirthDate] = useState(moment().format("YYYY-MM-DD"));
-  const [type, setType] = useState("student");
+  const [type, setType] = useState("");
 
   const { register, handleSubmit, setValue } = useForm<formInterface>();
 
   const syncData = () => {
+    if(UserStore.data) {
+      setBirthDate(UserStore.data.birthDate);
+      setType(UserStore.data.type);
+    }
     professionsList().then((data) => {
       setProfessions(data);
       communcationTypesList().then((data) => {
@@ -68,9 +72,12 @@ export const ProfileSettings = observer(() => {
     
     updateUserInfo({
       ...formData,
+      type,
+      birthDate,
       professionId: Number(formData.professionId),
       primaryCommunicationType: String(formData.primaryCommunicationType),
     }).then((data) => {
+      setOnLoad(false);
       if(!Array.isArray(data)) {
         navigate('/');
       } else {
