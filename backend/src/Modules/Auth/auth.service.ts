@@ -2,9 +2,9 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { User, Auth } from '../../entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SignInDto } from './dto/SignIn.dto';
-import { JwtService } from '../Core/services/jwt.service';
-import { ExpiresIn, JWTPayloadI } from '../Core/services/types/jwt.types';
+import { SignInDto } from './dto/sign-in';
+import { JwtService } from '../core/services/jwt.service';
+import { ExpiresIn, JWTPayloadI } from '../core/services/types/jwt.types';
 
 @Injectable()
 export class AuthService {

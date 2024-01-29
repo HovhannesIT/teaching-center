@@ -28,8 +28,6 @@ export const Login = observer(() => {
         const errors = err.response.data.message;
         setErrors(errors);
       });
-
-
   };
 
   return (
