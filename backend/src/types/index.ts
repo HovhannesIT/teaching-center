@@ -1,3 +1,3 @@
-export { CommuncationTypesE } from './enums/CommunicationTypes';
-export { UserTypesE } from './enums/UserTypes';
+export { CommuncationTypesE } from './enums/communication-types';
+export { UserTypesE } from './enums/user-types';
 export { UserInterfaceI } from './interfaces/user';

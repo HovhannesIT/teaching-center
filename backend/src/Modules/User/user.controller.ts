@@ -13,7 +13,7 @@ import { AccessGuard } from '../../guards/access.guard';
 import { AvatarInterceptor } from './avatar.interceptor';
 import { RequestGuardedI } from '../../types/interfaces/request.guard';
 import { UserService } from './user.service';
-import { UpdateUserInfoDTO } from './dto/UpdateUserInfo.dto';
+import { UpdateUserInfoDTO } from './dto/update-userinfo';
 
 @Controller('user')
 @UseGuards(AccessGuard)

@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { CommuncationTypesE, UserTypesE } from '../types';
-import { Auth } from './Auth.entity';
+import { Auth } from './auth';
 
 @Entity()
 export class User {

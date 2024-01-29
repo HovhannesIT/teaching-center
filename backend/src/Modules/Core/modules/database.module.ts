@@ -11,8 +11,8 @@ import {
 } from '../../../entities';
 
 import * as dotenv from 'dotenv';
-import { SuggestedImprovement } from '../../../entities/suggestedImprovement.entity';
-import { SuggestedProfession } from '../../../entities/suggestedProfession';
+import { SuggestedImprovement } from '../../../entities/suggested-improvements';
+import { SuggestedProfession } from '../../../entities/suggested-professions';
 
 dotenv.config();
 

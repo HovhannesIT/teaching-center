@@ -7,9 +7,9 @@ import {
   OneToOne,
   Column,
 } from 'typeorm';
-import { User } from './User.entity';
-import { Contract } from './Contract.entity';
-import { SeekingLooking } from './SeekingLooking.entity';
+import { User } from './user';
+import { Contract } from './contract';
+import { SeekingLooking } from './seeking-looking';
 import { IsBoolean } from 'class-validator';
 
 @Entity()

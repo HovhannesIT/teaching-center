@@ -1,4 +1,4 @@
-import { UserTypesE } from '../enums/UserTypes';
+import { UserTypesE } from '../enums/user-types';
 
 export interface UserInterfaceI {
   firstName: string;

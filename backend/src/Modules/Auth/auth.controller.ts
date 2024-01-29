@@ -9,11 +9,11 @@ import {
   UseGuards,
   Req,
 } from '@nestjs/common';
-import { SignUpDto } from './dto/SignUp.dto';
+import { SignUpDto } from './dto/sign-up';
 import { AuthService } from './auth.service';
 import { User } from '../../entities';
 import { plainToInstance } from 'class-transformer';
-import { SignInDto } from './dto/SignIn.dto';
+import { SignInDto } from './dto/sign-in';
 import { hash } from 'bcrypt';
 import { AccessGuard } from '../../guards/access.guard';
 import { RequestGuardedI } from '../../types/interfaces/request.guard';

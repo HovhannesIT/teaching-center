@@ -8,8 +8,8 @@ import {
   ManyToOne,
   OneToOne,
 } from 'typeorm';
-import { User } from './User.entity';
-import { Professions } from './Professions.entity';
+import { User } from './user';
+import { Professions } from './professions';
 
 @Entity()
 export class SeekingLooking {

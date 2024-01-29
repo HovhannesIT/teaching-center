@@ -1,13 +1,13 @@
 import { Body, Controller, Get, Ip, Post } from '@nestjs/common';
 import { infoResponseI } from './app.types';
-import { CommunicationTypes } from './entities/CommunicationTypes.entity';
+import { CommunicationTypes } from './entities/communication-types';
 import { Repository } from 'typeorm';
 import { Professions } from './entities';
 import { InjectRepository } from '@nestjs/typeorm';
-import { SuggestedImprovementDTO } from './dto/SuggestedImprovement.dto';
-import { SuggestedProfessionDTO } from './dto/SuggestedProfession.dto';
-import { SuggestedImprovement } from './entities/SuggestedImprovement.entity';
-import { SuggestedProfession } from './entities/SuggestedProfession';
+import { SuggestedImprovementDTO } from './dto/suggested-improvement';
+import { SuggestedProfessionDTO } from './dto/suggested-profession';
+import { SuggestedImprovement } from './entities/suggested-improvements';
+import { SuggestedProfession } from './entities/suggested-professions';
 import { instanceToPlain } from 'class-transformer';
 
 @Controller()
