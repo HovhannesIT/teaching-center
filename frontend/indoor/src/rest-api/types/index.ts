@@ -1,2 +1,2 @@
-export { SignInRequestI } from './signIn'
-export { SignUpRequestI } from './signUp'
+export type { SignInRequestI } from './signIn'
+export type { SignUpRequestI } from './signUp'
