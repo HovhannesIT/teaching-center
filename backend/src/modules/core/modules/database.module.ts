@@ -8,11 +8,11 @@ import {
   SeekingLooking,
   User,
   CommunicationTypes,
+  SuggestedImprovement,
+  SuggestedProfession,
 } from '../../../entities';
 
 import * as dotenv from 'dotenv';
-import { SuggestedImprovement } from '../../../entities/suggested-improvements';
-import { SuggestedProfession } from '../../../entities/suggested-professions';
 
 dotenv.config();
 

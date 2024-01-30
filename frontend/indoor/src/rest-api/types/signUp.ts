@@ -11,8 +11,3 @@ export interface SignUpRequestI {
   "birthDate": string,
   "avatar"?: string
 }
-
-export interface SignInRequestI {
-  "email": string;
-  "password": string;
-}

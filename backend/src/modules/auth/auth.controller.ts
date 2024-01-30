@@ -16,7 +16,7 @@ import { plainToInstance } from 'class-transformer';
 import { SignInDto } from './dto/sign-in';
 import { hash } from 'bcrypt';
 import { AccessGuard } from '../../guards/access.guard';
-import { RequestGuardedI } from '../../types/interfaces/request.guard';
+import { RequestGuardedI } from '../../types';
 
 @Controller('auth')
 export class AuthController {

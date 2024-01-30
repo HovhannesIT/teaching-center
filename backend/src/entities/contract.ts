@@ -9,9 +9,7 @@ import {
 } from 'typeorm';
 import { User } from './user';
 import { Professions } from './professions';
-import { PriceTypesE } from '../types/enums/price-types';
-import { CurrenciesE } from '../types/enums/currencies';
-import { ContractTypeE } from '../types/enums/contract-type';
+import { PriceTypesE, CurrenciesE, ContractTypeE } from '../types';
 
 @Entity()
 export class Contract {

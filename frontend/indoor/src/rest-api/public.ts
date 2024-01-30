@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SignInRequestI, SignUpRequestI } from "./types/signUp";
+import { SignInRequestI, SignUpRequestI } from "./types";
 
 export const professionsList: () => Promise<{id: number, name: string, description: string}[]> = async () => {
   const list = await axios('/professions');
