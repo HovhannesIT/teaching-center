@@ -5,7 +5,7 @@ import {
   IsString,
   MinLength,
 } from 'class-validator';
-import { PriceTypesE, ContractTypeE, CurrenciesE } from '../../../types/enums';
+import { PriceTypesE, ContractTypeE, CurrenciesE } from '../../../types';
 
 export class ApplyDTO {
   @IsNumber()
