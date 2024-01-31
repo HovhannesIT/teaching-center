@@ -5,7 +5,6 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   JoinColumn,
-  ManyToOne,
   OneToOne,
 } from 'typeorm';
 import { User } from './user';
@@ -26,7 +25,7 @@ export class SeekingLooking {
   @Column('text')
   description: string;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @OneToOne(() => User, (user) => user.id)
   @JoinColumn()
   owner: User;
 

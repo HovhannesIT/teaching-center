@@ -37,11 +37,11 @@ export class SeekingLookingService {
             },
           },
         ],
-        relations: ['User'],
+        relations: ['owner'],
       });
     }
 
-    return await this.seekingLooking.find({ relations: ['User'] });
+    return await this.seekingLooking.find({ relations: ['owner'] });
   }
 
   async apply(seekingLookingId: number, applyerId: number) {

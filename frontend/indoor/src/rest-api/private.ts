@@ -45,3 +45,6 @@ export const seekingLookingOpen = async (seeking: SeekingLookingOpenI) =>
     ...seeking,
     professionId: Number(seeking.professionId),
   });
+
+export const seekingLookingList = async () => 
+  await axios.get("/seeking-looking/list/global");
