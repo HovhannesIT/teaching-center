@@ -68,7 +68,7 @@ export const Support = () => {
         <div>
           <section>
             <p className="title">
-              Send Professions which you are not able to see in platform
+              Send Profession which you are not able to see in platform
             </p>
             <div>
               <form onSubmit={(e) => e.preventDefault()}>

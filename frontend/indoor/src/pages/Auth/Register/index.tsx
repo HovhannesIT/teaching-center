@@ -8,17 +8,7 @@ import moment from "moment";
 import { professionsList, signUp } from "../../../rest-api/public";
 import { communcationTypesList } from "../../../rest-api/public";
 import { useNavigate } from "react-router-dom";
-
-interface formInterface {
-  firstName: string;
-  lastName: string;
-  username: string;
-  email: string;
-  password: string;
-  professionId: string;
-  phoneNumber: string;
-  primaryCommunicationType: number;
-}
+import { SignUpFormI } from "../../../types/sign-up.i";
 
 export const Register = () => {
   const [onLoad, setOnLoad] = useState<boolean>(false);
@@ -35,14 +25,14 @@ export const Register = () => {
   const [birthDate, setBirthDate] = useState(moment().format("YYYY-MM-DD"));
   const [type, setType] = useState("student");
 
-  const { register, handleSubmit } = useForm<formInterface>();
+  const { register, handleSubmit } = useForm<SignUpFormI>();
 
   useEffect(() => {
     professionsList().then((data) => setProfessions(data));
     communcationTypesList().then((data) => setCommunicationTypes(data));
   }, []);
 
-  const onRegister = (formData: formInterface) => {
+  const onRegister = (formData: SignUpFormI) => {
     setOnLoad(true);
     signUp({
       ...formData,

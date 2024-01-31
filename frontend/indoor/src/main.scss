@@ -12,13 +12,17 @@
   box-sizing: border-box;
 }
 
+p {
+  margin: 0;
+}
+
 a {
   text-decoration: none;
   font-family: Roboto;
   color: var(--text);
 
   &:hover {
-    color: var(--primary)
+    color: var(--primary);
   }
 }
 
@@ -35,11 +39,66 @@ ul {
   margin: 0;
 }
 
-button, input {
+button,
+input {
   outline: 0;
   border: none;
   font-family: Roboto;
   cursor: pointer;
+}
+
+.type {
+  margin-top: 15px;
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  li.active {
+    background-color: var(--primary);
+  }
+  li {
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    height: 25px;
+    border: 1px solid var(--borders);
+  }
+  li:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  li:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
+
+select {
+  width: 100%;
+  height: 35px;
+  outline: 0;
+  border-radius: 5px;
+  background-color: var(--main);
+  color: var(--primary);
+}
+
+textarea {
+  min-height: 125px;
+  margin-top: 10px;
+  outline: 0;
+  background-color: var(--black);
+  border-radius: 5px;
+  resize: none;
+  border-color: var(--borders);
+  font-family: Roboto;
+  color: white;
+  font-size: 1rem;
+  padding: 5px;
+  &:focus {
+    border-color: white;
+  }
 }
 
 @keyframes rotate {
@@ -63,4 +122,9 @@ button, input {
     -webkit-transform: rotate3d(0, 0, 1, 360deg);
     transform: rotate3d(0, 0, 1, 360deg);
   }
+}
+
+.errors {
+  color: red;
+  margin-top: 10px;
 }

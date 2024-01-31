@@ -3,7 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./main.scss";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, UIKit, Support, Looking, Invitations, Contracts } from "./pages";
+import {
+  Home,
+  UIKit,
+  Support,
+  Looking,
+  Invitations,
+  Contracts,
+  LookingForm,
+} from "./pages";
 import { Professions } from "./pages/Professions";
 import { Login, Register } from "./pages/Auth";
 import { InitializeAxiosInterceptors } from "./interceptors.axios";
@@ -26,6 +34,12 @@ const router = createBrowserRouter([
     path: "/looking",
     element: <Looking />,
   },
+
+  {
+    path: "/looking/open",
+    element: <LookingForm />,
+  },
+
   {
     path: "/invitations",
     element: <Invitations />,
@@ -49,7 +63,7 @@ const router = createBrowserRouter([
   {
     path: "/ui-kit",
     element: <UIKit />,
-  }
+  },
 ]);
 
 InitializeAxiosInterceptors();

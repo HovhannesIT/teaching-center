@@ -55,22 +55,6 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         width: 100%;
-        textarea {
-          min-height: 125px;
-          margin-top: 10px;
-          outline: 0;
-          background-color: var(--black);
-          border-radius: 5px;
-          resize: none;
-          border-color: var(--borders);
-          font-family: Roboto;
-          color: white;
-          font-size: 1rem;
-          padding: 5px;
-          &:focus {
-            border-color: white;
-          }
-        }
         div.reversed {
           display: flex;
           justify-content: flex-end;

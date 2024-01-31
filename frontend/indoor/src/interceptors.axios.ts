@@ -3,9 +3,9 @@ import settings from "./settings.json";
 import { getUserInfo } from "./rest-api";
 import { UserStore } from "./store/user";
 export const InitializeAxiosInterceptors = () => {
-  axios.interceptors.request.use(
+axios.interceptors.request.use(
     function (config) {
-      config.baseURL = settings["rest-api"];
+      config.baseURL = settings["rest-api_dev"];
 
       if (
         config.method === "post" ||
@@ -21,6 +21,7 @@ export const InitializeAxiosInterceptors = () => {
       return Promise.reject(error);
     }
   );
+
   axios.interceptors.response.use(
     function (response) {
       if (response.request.responseURL.indexOf("/user/info") === -1) {
@@ -30,7 +31,6 @@ export const InitializeAxiosInterceptors = () => {
           }
         });
       }
-
       return response;
     },
     function (error) {

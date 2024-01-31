@@ -11,16 +11,7 @@ import { observer } from "mobx-react-lite";
 import { UserStore } from "../../store/user";
 import { updateUserInfo } from "../../rest-api/private";
 import { useNavigate } from "react-router-dom";
-
-interface formInterface {
-  firstName: string;
-  lastName: string;
-  type: string;
-  professionId: string;
-  phoneNumber: string;
-  birthDate: string;
-  primaryCommunicationType: number;
-}
+import { UpdateUserI } from "../../types/update-user-i";
 
 export const ProfileSettings = observer(() => {
   const [onLoad, setOnLoad] = useState<boolean>(false);
@@ -35,7 +26,7 @@ export const ProfileSettings = observer(() => {
   const [birthDate, setBirthDate] = useState(moment().format("YYYY-MM-DD"));
   const [type, setType] = useState("");
 
-  const { register, handleSubmit, setValue } = useForm<formInterface>();
+  const { register, handleSubmit, setValue } = useForm<UpdateUserI>();
 
   const syncData = () => {
     if(UserStore.data) {
@@ -67,9 +58,8 @@ export const ProfileSettings = observer(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onUpdate = (formData: formInterface) => {
+  const onUpdate = (formData: UpdateUserI) => {
     setOnLoad(true);
-    
     updateUserInfo({
       ...formData,
       type,
