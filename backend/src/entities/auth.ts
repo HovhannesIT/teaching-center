@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  JoinColumn,
+  OneToOne,
 } from 'typeorm';
+import { User } from './user';
 
 @Entity()
 export class Auth {
@@ -16,6 +19,10 @@ export class Auth {
 
   @Column('varchar', { nullable: true })
   accessToken: string;
+
+  @OneToOne(() => User, (user) => user.id, { nullable: true })
+  @JoinColumn()
+  user?: User;
 
   @CreateDateColumn()
   created_at: Date;

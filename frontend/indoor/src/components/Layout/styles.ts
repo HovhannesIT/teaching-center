@@ -80,6 +80,7 @@ export const AppBarContainer = styled.div`
         display: none;
       }
       ul {
+        z-index: 1000;
         text-align: left;
         align-items: flex-start;
         padding: 5px;

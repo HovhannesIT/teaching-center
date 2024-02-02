@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import { useNavigate } from "react-router-dom";
 import { Layout } from "../../components";
 import { Button } from "../UIKit/components";
 import { Container } from "./styles";
 import { seekingLookingList } from "../../rest-api/private";
 import { KITComponents } from "..";
+import { UserStore } from "../../store/user";
 
 export const Looking = observer(() => {
   const navigate = useNavigate();
@@ -34,10 +35,12 @@ export const Looking = observer(() => {
   return (
     <Layout>
       <Container>
-        <div className="actions">
-          <p>Find Here</p>
-          <Button onClick={() => navigate("/looking/open")}>Open</Button>
-        </div>
+        {UserStore.data ? (
+          <div className="actions">
+            <p>Find Here</p>
+            <Button onClick={() => navigate("/looking/open")}>Open</Button>
+          </div>
+        ) : null}
         <div className="content">
           {list.map((i, key) => (
             <KITComponents.Accordion

@@ -23,9 +23,14 @@ export class AuthService {
     try {
       const auth = await this.authRepository.save(this.authRepository.create());
 
-      await this.userRepository.save({
+      const user = await this.userRepository.save({
         ...newUserInfo,
         auth,
+      });
+
+      await this.authRepository.update(auth.id, {
+        ...auth,
+        user,
       });
 
       return auth;
